@@ -30,12 +30,12 @@ public class ConsumablesController {
 
     @RequestMapping(value = "/api/consumables", method= RequestMethod.POST)
     public Consumable addConsumable(@RequestBody  ConsumableRequestDTO request) {
-        return service.add(request.getCode(), request.getColor(), request.getQuantity(), request.getCritical());
+        return service.add(request.getCode(), request.getColor(), request.getCritical());
     }
 
     @RequestMapping(value="/api/consumables/{consumableid}", method=RequestMethod.PUT)
     public Consumable editConsumable(@PathVariable("consumableid") String consumableid, @RequestBody ConsumableRequestDTO request) {
-        return service.edit(consumableid, request.getCode(), request.getColor(), request.getQuantity(), request.getCritical());
+        return service.edit(consumableid, request.getCode(), request.getColor(), request.getCritical());
     }
 
     @RequestMapping(value = "/api/consumables/{consumableid}", method = RequestMethod.DELETE)

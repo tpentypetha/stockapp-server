@@ -42,7 +42,7 @@ public class PrinterServiceTest {
         Printer printer = printerService.addPrinter("test 15x ab");
         assertNotNull(printer);
 
-        Consumable ink = consumableService.add("H210XKRU", InkColor.MAGENTA, 2, false);
+        Consumable ink = consumableService.add("H210XKRU", InkColor.MAGENTA, false);
         printerService.assignConsumable(printer.getPublicid(), ink.getPublicid());
 
         printer = printerService.searchPrinters("test 15x ab").get(0);
@@ -58,7 +58,6 @@ public class PrinterServiceTest {
 
         assertTrue(printerService.searchPrinters("test 15x ab").isEmpty());
         assertTrue(!consumableService.searchByCode("H210XKRU").isEmpty());
-        assertTrue(consumableService.searchByCode("H210XKRU").get(0).getQuantity_available() == 0);
         assertFalse(consumableService.searchByCode("H210XKRU").get(0).getCritical());
     }
 

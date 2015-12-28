@@ -19,16 +19,15 @@ public class ConsumableService {
 
     private Logger log = LoggerFactory.getLogger(ConsumableService.class);
 
-    public Consumable add(String code, InkColor color, int quantity, boolean critical) {
-        Consumable newConsumable = create(code,color,quantity,critical);
+    public Consumable add(String code, InkColor color, boolean critical) {
+        Consumable newConsumable = create(code,color,critical);
         return consumables.save(newConsumable);
     }
 
-    public Consumable edit(String publicid, String code, InkColor color, int quantity, boolean critical) {
+    public Consumable edit(String publicid, String code, InkColor color, boolean critical) {
         Consumable existing = consumables.findByPublicid(publicid);
         existing.setCode(code);
         existing.setColor(color);
-        existing.setQuantity_available(quantity);
         existing.setCritical(critical);
         return consumables.save(existing);
     }
@@ -37,7 +36,6 @@ public class ConsumableService {
         Consumable consumable = consumables.findByPublicid(public_id);
         if (consumable != null) {
             consumable.setCritical(false);
-            consumable.setQuantity_available(0);
             consumables.save(consumable);
         } else {
             ServiceErrors.failWith(ServiceErrors.CONSUMABLE_NOT_FOUND);
@@ -49,12 +47,11 @@ public class ConsumableService {
     }
 
 
-    private Consumable create(String code, InkColor color, int quantity, boolean critical) {
+    private Consumable create(String code, InkColor color, boolean critical) {
         Consumable consumable = new Consumable();
         consumable.setCode(code);
         consumable.setColor(color);
         consumable.setCritical(critical);
-        consumable.setQuantity_available(quantity);
         consumable.setPublicid(UUID.randomUUID().toString());
         return consumable;
     }

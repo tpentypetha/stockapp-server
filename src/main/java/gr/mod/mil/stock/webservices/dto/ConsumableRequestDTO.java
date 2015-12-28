@@ -7,7 +7,6 @@ public class ConsumableRequestDTO {
     private String code;
     private InkColor color;
     private boolean critical;
-    private int quantity;
 
 
     public String getCode() {
@@ -34,11 +33,4 @@ public class ConsumableRequestDTO {
         this.critical = critical;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }

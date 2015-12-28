@@ -21,9 +21,6 @@ public class CabinetServiceTest {
     @Autowired
     private CabinetService service;
 
-    @Autowired
-    private ConsumableService consumableService;
-
     @Test
     public void testCrud() {
         Cabinet a1 = service.addCabinet("A1");
@@ -37,31 +34,6 @@ public class CabinetServiceTest {
         assertTrue(should_be_empty.isEmpty());
     }
 
-    @Test
-    public void testConsumable() {
-        Cabinet cabinet = service.addCabinet("A1");
-        assertNotNull(cabinet);
 
-        Consumable ink = consumableService.add("H210XKRU", InkColor.MAGENTA, 2, false);
-        service.assignConsumable(cabinet.getPublicid(), ink.getPublicid());
-
-        cabinet = service.searchByName("A1").get(0);
-        List<Consumable> inks = service.getCabinetConsumables(cabinet.getId());
-        assertTrue(inks.contains(ink));
-
-        service.removeConsumable(cabinet.getPublicid(), ink.getPublicid());
-        cabinet = service.searchByName("A1").get(0);
-        assertTrue(! service.getCabinetConsumables(cabinet.getId()).contains(ink));
-
-        consumableService.markAsObsolete(ink.getPublicid());
-        service.removeCabinet(cabinet.getPublicid());
-
-        assertTrue(service.searchByName("A1").isEmpty());
-        assertTrue(!consumableService.searchByCode("H210XKRU").isEmpty());
-        assertTrue(consumableService.searchByCode("H210XKRU").get(0).getQuantity_available() == 0);
-        assertFalse(consumableService.searchByCode("H210XKRU").get(0).getCritical());
-
-
-    }
 
 }

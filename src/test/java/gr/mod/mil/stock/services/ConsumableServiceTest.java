@@ -22,10 +22,10 @@ public class ConsumableServiceTest {
 
     @Test
     public void testService() {
-        Consumable inserted = service.add("H210XKRU", InkColor.CYAN, 5, false);
+        Consumable inserted = service.add("H210XKRU", InkColor.CYAN, false);
         assertNotNull(inserted);
 
-        Consumable updated = service.add("H210XKRU", InkColor.YELLOW, 5, false);
+        Consumable updated = service.add("H210XKRU", InkColor.YELLOW, false);
         assertTrue(updated.getColor().equals(InkColor.YELLOW));
 
         List<Consumable> found = service.searchByCode("210");
@@ -34,7 +34,6 @@ public class ConsumableServiceTest {
         Consumable first = found.get(0);
         service.markAsObsolete(first.getPublicid());
         assertTrue(!service.searchByCode("H210XKRU").isEmpty());
-        assertTrue(service.searchByCode("H210XKRU").get(0).getQuantity_available() == 0);
         assertFalse(service.searchByCode("H210XKRU").get(0).getCritical());
     }
 

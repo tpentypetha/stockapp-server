@@ -25,8 +25,8 @@ public class Cabinet {
     public void setPublicid(String publicid) { this.publicid = publicid; }
 
     @OneToMany(fetch = FetchType.EAGER)
-    List<Consumable> contains = new ArrayList<>();
-    public List<Consumable> getContains() { return  contains; }
-    public void setContains(List<Consumable> contains) {this.contains = contains; }
+    List<Quantity> quantities;
+    public List<Quantity> getQuantities() {return quantities;}
+    public void setQuantities(List<Quantity> quantities) {this.quantities = quantities;}
 
 }

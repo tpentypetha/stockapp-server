@@ -28,10 +28,6 @@ public class Consumable {
     public boolean getCritical() { return critical; }
     public void setCritical(boolean critical) { this.critical = critical; }
 
-    int quantity_available;
-    public int getQuantity_available() { return quantity_available; }
-    public void setQuantity_available(int quantity_available) { this.quantity_available = quantity_available; }
-
     @Override
     public boolean equals(Object other) {
         return other instanceof Consumable && ((Consumable)other).getId() == this.getId();

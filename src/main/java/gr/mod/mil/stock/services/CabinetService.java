@@ -2,8 +2,10 @@ package gr.mod.mil.stock.services;
 
 import gr.mod.mil.stock.dal.model.Cabinet;
 import gr.mod.mil.stock.dal.model.Consumable;
+import gr.mod.mil.stock.dal.model.Quantity;
 import gr.mod.mil.stock.dal.repos.CabinetRepository;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;
+import gr.mod.mil.stock.dal.repos.QuantityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,6 @@ public class CabinetService {
 
     @Autowired
     private CabinetRepository cabinets;
-
-    @Autowired
-    private ConsumableRepository consumables;
 
     public Cabinet addCabinet(String name) {
         List<Cabinet> found = cabinets.findByName(name);
@@ -51,25 +50,8 @@ public class CabinetService {
         }
     }
 
-    public Cabinet assignConsumable(String cabinetid, String consumableid){
-        Cabinet cabinet = cabinets.findByPublicid(cabinetid);
-        Consumable consumable = consumables.findByPublicid(consumableid);
-        cabinet.getContains().add(consumable);
-        consumables.save(consumable);
-        return cabinets.save(cabinet);
-    }
-
-    public Cabinet removeConsumable(String cabinetid, String consumableid) {
-        Cabinet cabinet = cabinets.findByPublicid(cabinetid);
-        Consumable consumable = consumables.findByPublicid(consumableid);
-        cabinet.getContains().remove(consumable);
-        consumables.save(consumable);
-        return cabinets.save(cabinet);
-    }
-
     public List<Cabinet> searchByName(String input) {
         return cabinets.findByName(input);
     }
 
-    public List<Consumable> getCabinetConsumables(long id) { return cabinets.getCabinetConsumables(id); }
 }

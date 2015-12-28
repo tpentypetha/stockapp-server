@@ -15,9 +15,6 @@ public interface CabinetRepository extends CrudRepository<Cabinet, Long> {
     @Query("SELECT C from Cabinet C where LOWER(C.name) like CONCAT('%', CONCAT(:input, '%') ) ")
     List<Cabinet> findByName(@Param("input") String name);
 
-    @Query("SELECT C.contains from Cabinet C left join C.contains as T where C.id = :cabinetId")
-    List<Consumable> getCabinetConsumables(@Param("cabinetId") long id);
-
     Cabinet findByPublicid(String publicid);
 
 }

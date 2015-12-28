@@ -45,15 +45,4 @@ public class CabinetsController {
         service.removeCabinet(publicid);
     }
 
-    @RequestMapping(value = "/api/cabinets/{publicid}/consumables", method = RequestMethod.POST)
-    public void assignConsumable(@PathVariable("publicid") String publicid, @RequestBody ConsumableReferenceDTO request) {
-        service.assignConsumable(publicid,request.getPublicid());
-    }
-
-    @RequestMapping(value = "/api/cabinets/{cabinetid}/consumables/{consumableid}", method = RequestMethod.DELETE)
-    public void removeConsumable(@PathVariable("cabinetid") String cabinetid, @PathVariable("consumableid") String consumableid) {
-        service.removeConsumable(cabinetid, consumableid);
-    }
-
-
 }
