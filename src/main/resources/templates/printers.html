@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="panel">
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info" type="button" onclick="javascript:printers.goToAddPrinter()">Προσθήκη</button>
+            </div>
+            <div class="col-md-6">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="form-control input-lg" placeholder="Εύρεση" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><strong>Όνομα Μοντέλου</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="printer,iterationStatus: ${printers}">
+                    <td th:text="${printer.name}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
