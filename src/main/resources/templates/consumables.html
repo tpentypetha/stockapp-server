@@ -1,8 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
 <body>
 <section layout:fragment="content">
-    <p>Consumables content</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <a href="/addConsumable" class="btn btn-info" role="button">Προσθήκη</a>
+            </div>
+            <div class="col-md-6">
+                <div id="custom-search-input">
+                    <form role="form" action="consumables" method="get" name="searchConsumableDto">
+                        <div class="input-group col-md-12">
+                            <input type="text" name="query" class="form-control input-lg" placeholder="Εύρεση" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <table class="table">
+            <thead>
+            <tr>
+                <td><strong>Κωδικός Αναλώσιμου</strong></td>
+                <td><strong>Χρώμα</strong></td>
+                <td><strong>Κρίσιμο Απόθεμα</strong></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="consumable,iterationStatus: ${consumables}">
+                <td th:text="${consumable.code}"></td>
+                <td th:text="${consumable.color}"></td>
+                <td th:if="${consumable.critical}" th:text="Ναι"></td>
+                <td th:if="${! consumable.critical}" th:text="Όχι"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 </body>
 </html>

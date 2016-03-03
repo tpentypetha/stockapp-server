@@ -1,11 +1,11 @@
-package gr.mod.mil.stock.web;
+package gr.mod.mil.stock.web.controllers;
 
 import gr.mod.mil.stock.services.PrinterService;
+import gr.mod.mil.stock.web.dto.AddPrinterDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,9 +24,9 @@ public class AddPrinterViewController {
     }
 
     @RequestMapping(value = "addPrinter", method = RequestMethod.POST)
-    public String doAddPrinter(@ModelAttribute String name, ModelMap modelMap) {
-        service.addPrinter(name);
-        return "addPrinter";
+    public String doAddPrinter(@ModelAttribute("printerDto")AddPrinterDTO data) {
+        service.addPrinter(data.getName());
+        return "redirect:printers";
     }
 
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3 th:text="${printer.name}"></h3>
+        <div class="row">
+            <div class="btn-group pull-left">
+                <a th:href="@{/addPrinterConsumable(printer=${printer.publicid})}" class="btn btn-primary" role="button">Προσθήκη Αναλωσίμων</a>
+                <a th:href="@{/removePrinter(id=${printer.publicid})}" class="btn btn-danger" role="button">Διαγραφή Εκτυπωτή</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <td><strong>Κωδικός Αναλωσίμου</strong></td>
+                <td><strong>Χρώμα</strong></td>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="consumable, iternationStatus:${printer.uses}">
+                    <td th:text="${consumable.code}"></td>
+                    <td th:text="${consumable.color}"></td>
+                    <td>
+                        <form role="form" action="/removePrinterConsumable" method="post" name="removePrinterConsumableDto">
+                            <input type="hidden" name="printerid" th:value="${printer.publicid}"></input>
+                            <input type="hidden" name="consumableid" th:value="${consumable.publicid}"></input>
+                            <button type="submit" class="btn btn-danger">Αφαίρεση από εκτυπωτή</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

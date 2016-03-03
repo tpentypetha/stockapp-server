@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="col-md-4">
+        <form role="form" action="/addConsumable" method="post" name="consumableDto">
+            <div class="form-group">
+                <label for="code">Κωδικός Αναλωσίμου:</label>
+                <input type="text" class="form-control" id="code" name="code"></input>
+                <label><b>Χρώμα</b></label>
+                <div class="radio">
+                    <label><input type="radio" name="color" value="BLACK" selected="true"></input>BLACK</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="color" value="CYAN"></input>CYAN</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="color" value="YELLOW"></input>YELLOW</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="color" value="MAGENTA"></input>MAGENTA</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="color" value="LIGHT_CYAN"></input>LIGHT_CYAN</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="color" value="LIGHT_MAGENTA"></input>LIGHT_MAGENTA</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="color" value="TRICOLOR"></input>TRICOLOR</label>
+                </div>
+                <label><b>Προτεραιότητα προμήθειας</b></label>
+                <div class="radio">
+                    <label><input type="radio" name="critical" value="true"></input>Ναι</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="critical" value="false"></input>Όχι</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Προσθήκη</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

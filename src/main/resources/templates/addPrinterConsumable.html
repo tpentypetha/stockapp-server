@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3 th:text="${printer.name}"></h3>
+        <p>
+            Προσθήκη τύπου αναλώσιμου, πλητρολογήστε ένα κωδικό για εύρεση των διαθέσιμων κωδικών αναλωσίμων.
+            Αν δεν υπάρχει ένας κωδικός μπορείται να τον προσθέσετε από <b>Μελάνια Αποθέματα</b> &gt; <b>Προσθήκη</b>
+        </p>
+        <form role="form" action="/addPrinterConsumable" method="get" name="addPrinterConsumableDto">
+            <div class="input-group col-md-6">
+                <input type="hidden" name="printer" th:value="${printer.publicid}"></input>
+                <input type="text" class="search-query form-control" placeholder="Εύρεση" name="code"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><strong>Κωδικός Αναλωσίμου</strong></td>
+                    <td><strong>Χρώμα</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="consumable,iterationStatus:${consumables}">
+                    <td th:text="${consumable.code}"></td>
+                    <td th:text="${consumable.color}"></td>
+                    <td>
+                        <form role="form" name="addPrinterConsumableDto" method="post" action="/addPrinterConsumable">
+                            <input name="printerid" th:value="${printer.publicid}" type="hidden"></input>
+                            <input name="consumableid" th:value="${consumable.publicid}" type="hidden"></input>
+                            <button class="btn btn-primary" type="submit">Προσθήκη</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

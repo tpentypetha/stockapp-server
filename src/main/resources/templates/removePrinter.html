@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3 th:text="${printer.name}"></h3>
+        <p>Είστε σίγουρος(η) ότι θέλετε να σβήσετε τον εκτυπωτή;</p>
+        <form role="form" name="removePrinterDto" action="/removePrinter" method="post">
+            <input type="hidden" th:value="${printer.publicid}" name="printerid"></input>
+            <button type="sumbit" class="btn btn-danger">Διαγραφή</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

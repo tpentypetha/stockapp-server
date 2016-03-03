@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3 th:text="${cabinet.name}"></h3>
+        <div class="row">
+            <div class="btn-group pull-left">
+                <a th:href="@{/addCabinetConsumable(cabinetid=${cabinet.publicid})}" class="btn btn-primary" role="button">Προσθήκη Αναλωσίμων</a>
+                <a th:href="@{/removeCabinet(id=${cabinet.publicid})}" class="btn btn-danger" role="button">Διαγραφή Ραφιού</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <td><strong>Κωδικός Αναλωσίμου</strong></td>
+                <td><strong>Αποθηκευμένη Ποσότητα</strong></td>
+                <td><strong>Επεξεργασία ποσότητας</strong></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="quantity, iternationStatus:${cabinet.quantities}">
+                <td th:text="${quantity.consumable.code}"></td>
+                <td th:text="${quantity.amount}"></td>
+                <td>
+                    <form role="form" action="editQuantity" name="editQuantityDto" method="post">
+                        <input type="hidden" name="quantityid" th:value="${quantity.publicid}"></input>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" th:value="${quantity.amount}" name="quantity"></input>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Επεξεργασία</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
