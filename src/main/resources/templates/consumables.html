@@ -38,6 +38,7 @@
                 <td th:text="${consumable.color}"></td>
                 <td th:if="${consumable.critical}" th:text="Ναι"></td>
                 <td th:if="${! consumable.critical}" th:text="Όχι"></td>
+                <td><a th:href="@{/showAvailable(id=${consumable.publicid})}" class="btn btn-info" role="button">Απόθεμα</a></td>
             </tr>
             </tbody>
         </table>

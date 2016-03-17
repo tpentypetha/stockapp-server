@@ -1,6 +1,5 @@
 package gr.mod.mil.stock.webservices.controllers;
 
-import gr.mod.mil.stock.dal.model.Cabinet;
 import gr.mod.mil.stock.dal.model.Consumable;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;
 import gr.mod.mil.stock.services.ConsumableService;
@@ -11,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -52,22 +50,7 @@ public class ConsumablesController {
 
     @RequestMapping(value = "api/consumables/{consumableid}/availability")
     public List<AvailabilityDTO> getAvailabilty(@PathVariable("consumableid") String consumableid) {
-        Consumable consumable = consumables.findByPublicid(consumableid);
-        List<Cabinet> cabinets = consumables.getAvailability(consumable.getCode());
-        List<AvailabilityDTO> availabilityDTOs = new ArrayList<>();
-        cabinets.stream().forEach(cabinet -> {
-            log.info("Cabinet: " + cabinet.getName());
-            cabinet.getQuantities().stream().forEach(quantity -> {
-                if (quantity.getConsumable().getPublicid().equals(consumableid)) {
-                    AvailabilityDTO dto = new AvailabilityDTO();
-                    dto.setAmount(quantity.getAmount());
-                    dto.setCabinetId(cabinet.getPublicid());
-                    dto.setCabinetName(cabinet.getName());
-                    availabilityDTOs.add(dto);
-                }
-            });
-        });
-        return availabilityDTOs;
+        return service.getAvailable(consumableid);
     }
 
 }

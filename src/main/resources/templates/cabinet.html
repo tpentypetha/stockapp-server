@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base"
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:margin-left="http://www.w3.org/1999/xhtml"
+      layout:decorator="base"
       xmlns:th="http://www.thymeleaf.org">
 <body>
 <section layout:fragment="content">
@@ -24,25 +25,24 @@
                 <td th:text="${quantity.consumable.code}"></td>
                 <td th:text="${quantity.amount}"></td>
                 <td>
-                    <form role="form" action="editQuantity" name="editQuantityDto" method="post">
-                        <input type="hidden" name="quantityid" th:value="${quantity.publicid}"></input>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <input type="text" th:value="${quantity.amount}" name="quantity"></input>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-success">
-                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                                    </button>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Επεξεργασία</button>
-                        </div>
-                    </form>
+                    <div class="row">
+                        <form role="form" action="editQuantity" name="editQuantityDto" method="post">
+                            <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>
+                            <input type="hidden" name="quantityid" th:value="${quantity.publicid}"></input>
+                            <input type="hidden" name="amount" th:value="${quantity.amount + 1}"></input>
+                            <button type="submit" class="btn btn-success pull-left" style="margin-left: 3px">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                        </form>
+                        <form role="form" action="editQuantity" name="editQuantityDto" method="post">
+                            <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>
+                            <input type="hidden" name="quantityid" th:value="${quantity.publicid}"></input>
+                            <input type="hidden" name="amount" th:value="${quantity.amount - 1}"></input>
+                            <button type="submit" class="btn btn-danger pull-left" style="margin-left: 3px">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            </button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             </tbody>

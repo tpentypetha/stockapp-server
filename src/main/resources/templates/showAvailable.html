@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3 th:text="${consumable.code}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <td><strong>Ράφι</strong></td>
+                <td><strong>Ποσότητα Διαθέσιμη</strong></td>
+                <td><strong>Μετάβαση στο ράφι</strong></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="availability, iternationStatus:${availabilities}">
+                <td th:text="${availability.cabinetName}"></td>
+                <td th:text="${availability.amount}"></td>
+                <td> <a th:href="@{/cabinet(id=${availability.cabinetId})}" class="btn btn-link">Μετάβαση</a> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
