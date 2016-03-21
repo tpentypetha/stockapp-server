@@ -8,6 +8,7 @@
             <h4 th:text="${consumable.code}"></h4>
             <p> Εισάγεται παρακαλώ το πλήθος των αναλωσίμων με τον παραπάνω κωδικό που βρίσκονται στο ράφι.</p>
             <form role="form" name="addQuantityDto" action="addCabinetQuantity" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
                 <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>
                 <input type="hidden" name="consumableid" th:value="${consumable.publicid}"></input>
                 <div class="row">

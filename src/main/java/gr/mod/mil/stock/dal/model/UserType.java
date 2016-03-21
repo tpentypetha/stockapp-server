@@ -1,7 +1,19 @@
 package gr.mod.mil.stock.dal.model;
 
-public enum UserType {
+import org.springframework.security.core.GrantedAuthority;
 
-    ADMINISTRATOR, LOGIN;
+public enum UserType implements GrantedAuthority {
+
+    ADMINISTRATOR {
+        @Override
+        public String getAuthority() {
+            return "ADMIN";
+        }
+    }, LOGIN {
+        @Override
+        public String getAuthority() {
+            return "LOGIN";
+        }
+    };
 
 }

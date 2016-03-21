@@ -10,6 +10,7 @@
             Αν δεν υπάρχει ένας κωδικός μπορείται να τον προσθέσετε από <b>Μελάνια Αποθέματα</b> &gt; <b>Προσθήκη</b>
         </p>
         <form role="form" action="/addCabinetConsumable" method="get" name="addCabinetConsumableDto">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
             <div class="input-group col-md-6">
                 <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>
                 <input type="text" class="search-query form-control" placeholder="Εύρεση" name="code"/>

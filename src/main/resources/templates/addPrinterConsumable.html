@@ -10,6 +10,7 @@
             Αν δεν υπάρχει ένας κωδικός μπορείται να τον προσθέσετε από <b>Μελάνια Αποθέματα</b> &gt; <b>Προσθήκη</b>
         </p>
         <form role="form" action="/addPrinterConsumable" method="get" name="addPrinterConsumableDto">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
             <div class="input-group col-md-6">
                 <input type="hidden" name="printer" th:value="${printer.publicid}"></input>
                 <input type="text" class="search-query form-control" placeholder="Εύρεση" name="code"/>
@@ -33,6 +34,7 @@
                     <td th:text="${consumable.color}"></td>
                     <td>
                         <form role="form" name="addPrinterConsumableDto" method="post" action="/addPrinterConsumable">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
                             <input name="printerid" th:value="${printer.publicid}" type="hidden"></input>
                             <input name="consumableid" th:value="${consumable.publicid}" type="hidden"></input>
                             <button class="btn btn-primary" type="submit">Προσθήκη</button>

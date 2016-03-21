@@ -7,6 +7,7 @@
         <h3 th:text="${cabinet.name}"></h3>
         <p>Είστε σίγουρος(η) ότι θέλετε να σβήσετε το ράφι;</p>
         <form role="form" name="removeCabinetDto" action="/removeCabinet" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
             <input type="hidden" th:value="${cabinet.publicid}" name="cabinetid"></input>
             <button type="sumbit" class="btn btn-danger">Διαγραφή</button>
         </form>
