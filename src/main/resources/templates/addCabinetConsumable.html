@@ -4,6 +4,9 @@
 <body>
 <section layout:fragment="content">
     <div class="container">
+        <div th:if="${error}" class="alert alert-warning">
+            <strong>Προσοχή!</strong> Το αναλώσιμο που προσπαθείτε να προσθέσετε υπάρχει ήδη.
+        </div>
         <h3 th:text="${cabinet.name}"></h3>
         <p>
             Προσθήκη τύπου αναλώσιμου, πλητρολογήστε ένα κωδικό για εύρεση των διαθέσιμων κωδικών αναλωσίμων.

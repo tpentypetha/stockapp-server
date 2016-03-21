@@ -1,6 +1,7 @@
 package gr.mod.mil.stock.web.controllers;
 
 import gr.mod.mil.stock.dal.repos.PrinterRepository;
+import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.PrinterService;
 import gr.mod.mil.stock.web.dto.SearchPrinterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,14 @@ public class PrintersViewController {
     @Autowired
     PrinterService service;
 
+    @Autowired
+    LogService logger;
+
     @RequestMapping(value = "/printers", method = RequestMethod.GET)
     public String printers(@ModelAttribute("searchPrinterDto") SearchPrinterDTO data, Model model) {
         String query = data.getQuery() == null ? "" : data.getQuery().toLowerCase();
         model.addAttribute("printers", service.searchPrinters(query));
+        logger.log("visited Printers page");
         return "printers";
     }
 

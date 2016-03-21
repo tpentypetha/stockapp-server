@@ -1,9 +1,11 @@
 package gr.mod.mil.stock.web.controllers;
 
 import gr.mod.mil.stock.dal.model.Consumable;
+import gr.mod.mil.stock.dal.model.Printer;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;
 import gr.mod.mil.stock.dal.repos.PrinterRepository;
 import gr.mod.mil.stock.services.ConsumableService;
+import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.PrinterService;
 import gr.mod.mil.stock.web.dto.AddPrinterConsumableDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,17 +31,28 @@ public class AddPrinterConsumableViewController {
     @Autowired
     PrinterService printerService;
 
+    @Autowired
+    LogService logger;
+
     @RequestMapping(value="/addPrinterConsumable", method= RequestMethod.GET)
     public String render(@RequestParam("printer")String printer, @RequestParam(value="code", required = false) String code, Model model){
         model.addAttribute("printer", printerRepo.findByPublicid(printer));
         model.addAttribute("consumables", getConsumablesForCode(code));
+        logger.log("visited Add Printer Consumable page");
         return "addPrinterConsumable";
     }
 
     @RequestMapping(value = "/addPrinterConsumable", method = RequestMethod.POST)
     public String add(@ModelAttribute("addPrinterConsumableDto")AddPrinterConsumableDTO data){
-        printerService.assignConsumable(data.getPrinterid(), data.getConsumableid());
-        return "redirect:printer?id="+data.getPrinterid();
+        Printer printer = printerRepo.findByPublicid(data.getPrinterid());
+        Consumable consumable = consumableRepo.findByPublicid(data.getConsumableid());
+        try {
+            printerService.assignConsumable(data.getPrinterid(), data.getConsumableid());
+            logger.log("added consumable " + consumable.getCode() + " to printer " + printer.getName());
+            return "redirect:printer?id="+data.getPrinterid();
+        } catch (PrinterService.PrinterConsumableAlreadyExists pcae) {
+            return "redirect:printer?id="+data.getPrinterid()+"&error=true";
+        }
     }
 
     private List<Consumable> getConsumablesForCode(String code) {

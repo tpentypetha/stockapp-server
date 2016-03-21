@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="error-template">
+                    <h1>
+                        Προσοχή!
+                    </h1>
+                    <h2>
+                        Απροσδόκητο σφάλμα
+                    </h2>
+                    <div class="error-details">
+                        Ένα απροσδόκητο σφάλμα συνέβη κατά την επεξεργασία του αιτήματος σας, παρακαλώ επιστρέψτε στην αρχική σελίδα.
+                    </div>
+                    <div class="error-actions">
+                        <a href="/" class="btn btn-primary btn-lg">
+                            <span class="glyphicon glyphicon-home"></span>
+                            Πίσω στην αρχική σελίδα
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

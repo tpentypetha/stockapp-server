@@ -43,9 +43,16 @@ public class PrinterService {
 
     }
 
-    public Printer assignConsumable(String printer_id, String consumable_id) {
+    public Printer assignConsumable(String printer_id, String consumable_id) throws PrinterConsumableAlreadyExists {
         Printer printer = printers.findByPublicid(printer_id);
         Consumable consumable = consumables.findByPublicid(consumable_id);
+        if (getPrinterConsumables(printer.getId())
+                .stream()
+                .filter(c -> c.equals(consumable))
+                .count() > 0 ) {
+            throw new PrinterConsumableAlreadyExists();
+        }
+
         printer.getUses().add(consumable);
         consumables.save(consumable);
         return printers.save(printer);
@@ -67,6 +74,12 @@ public class PrinterService {
 
     public List<Printer> searchPrinters(String input) {
         return printers.findByName(input);
+    }
+
+    public class PrinterConsumableAlreadyExists extends RuntimeException {
+        public PrinterConsumableAlreadyExists() {
+            super("Printer consumable already exists.");
+        }
     }
 
 }

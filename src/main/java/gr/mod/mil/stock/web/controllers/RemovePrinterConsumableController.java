@@ -1,5 +1,10 @@
 package gr.mod.mil.stock.web.controllers;
 
+import gr.mod.mil.stock.dal.model.Consumable;
+import gr.mod.mil.stock.dal.model.Printer;
+import gr.mod.mil.stock.dal.repos.ConsumableRepository;
+import gr.mod.mil.stock.dal.repos.PrinterRepository;
+import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.PrinterService;
 import gr.mod.mil.stock.web.dto.RemovePrinterConsumableDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +19,21 @@ public class RemovePrinterConsumableController {
     @Autowired
     PrinterService service;
 
+    @Autowired
+    PrinterRepository printers;
+
+    @Autowired
+    ConsumableRepository repository;
+
+    @Autowired
+    LogService logger;
+
     @RequestMapping(value = "/removePrinterConsumable",method = RequestMethod.POST)
     public String doRemove(@ModelAttribute("removePrinterConsumableDto")RemovePrinterConsumableDTO data){
+        Printer printer = printers.findByPublicid(data.getPrinterid());
+        Consumable consumable = repository.findByPublicid(data.getConsumableid());
         service.removeConsumable(data.getPrinterid(), data.getConsumableid());
+        logger.log("removed the consumable " + consumable.getCode() + "("+data.getConsumableid()+") from printer: " + printer.getName());
         return "redirect:printer?id="+data.getPrinterid();
     }
 

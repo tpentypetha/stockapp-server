@@ -28,9 +28,14 @@ public class QuantityService {
         return quantities.findByPublicid(quantityid);
     }
 
-    public Quantity addQuantity(String cabinetid, String consumableid, int initialAmount) {
+    public Quantity addQuantity(String cabinetid, String consumableid, int initialAmount)
+        throws ConsumableQuantityAlreadyExists {
         Cabinet cabinet = cabinets.findByPublicid(cabinetid);
         Consumable consumable = consumables.findByPublicid(consumableid);
+
+        if (consumableExists(cabinet, consumable)) {
+            throw new ConsumableQuantityAlreadyExists(cabinet, consumable);
+        }
 
         Quantity quantity = new Quantity();
         quantity.setConsumable(consumable);
@@ -53,6 +58,28 @@ public class QuantityService {
         Quantity quantity = quantities.findByPublicid(quantityid);
         quantity.setAmount(amount);
         return quantities.save(quantity);
+    }
+
+    private boolean consumableExists(Cabinet cabinet, Consumable consumable) {
+        return cabinet.getQuantities()
+                .stream()
+                .filter(q -> q.getConsumable().equals(consumable))
+                .count() > 0;
+    }
+
+    public class ConsumableQuantityAlreadyExists extends RuntimeException {
+
+        private final Consumable consumable;
+        public Consumable getConsumable() { return consumable; }
+
+        private final Cabinet cabinet;
+        public Cabinet getCabinet() { return cabinet; }
+
+        public ConsumableQuantityAlreadyExists(Cabinet cabinet, Consumable consumable) {
+            super("Cabinet " + cabinet.getName() + " already contains a quantity with consumable: " + consumable.getCode());
+            this.cabinet = cabinet;
+            this.consumable = consumable;
+        }
     }
 
 }
