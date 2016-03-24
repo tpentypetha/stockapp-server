@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div th:if="${saved}" class="alert alert-success">
+            <strong>Επιτυχία</strong>
+            H παραγγελία σας ολοκληρώθηκε με επιτυχία, μπορείτε να ανατρέξετε στα στοιχεία
+            της από Αναφορές > Ολοκληρωμένες παραγγελίες.
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Είδος</th>
+                <th>Κατηγορία</th>
+                <th>Ποσότητα</th>
+            </tr>
+            </thead>
+            <tbdody>
+                <tr th:each="item, iterationStatus:${order.items}">
+                    <td th:text="${item.orderableTitle}"></td>
+                    <td th:text="${item.category}"></td>
+                    <td th:text="${item.finalAmount}"></td>
+                </tr>
+            </tbdody>
+        </table>
+        <a th:href="@{/printorder(id=${order.publicid})}" class="btn btn-sm btn-success">Εκτύπωση</a>
+    </div>
+</section>
+</body>
+</html>

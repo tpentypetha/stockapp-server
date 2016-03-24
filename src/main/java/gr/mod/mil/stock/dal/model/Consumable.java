@@ -1,11 +1,13 @@
 package gr.mod.mil.stock.dal.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import gr.mod.mil.stock.ordering.Orderable;
+import gr.mod.mil.stock.ordering.OrderableCategory;
 
 import javax.persistence.*;
 
 @Entity
-public class Consumable {
+public class Consumable implements Orderable {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) @JsonIgnore
     Long id;
@@ -33,5 +35,13 @@ public class Consumable {
         return other instanceof Consumable && ((Consumable)other).getId() == this.getId();
     }
 
+    @Override
+    public String getOrderableTitle() {
+        return this.getCode() + " " + this.getColor().toString();
+    }
 
+    @Override
+    public OrderableCategory getCategory() {
+        return OrderableCategory.CONSUMABLE;
+    }
 }

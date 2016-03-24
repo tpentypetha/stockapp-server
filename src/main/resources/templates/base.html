@@ -22,8 +22,16 @@
                 <li><a href="printers">Εκτυπωτές</a></li>
                 <li><a href="cabinets">Ράφια</a></li>
                 <li><a href="consumables">Αναλώσιμα</a></li>
-                <li><a href="loginusers">Χρήστες</a></li>
-                <li><a href="log">Ιστορικό</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/">Αναφορές
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/consumableReports">Κατανάλωση αναλωσίμων</a></li>
+                        <li><a href="/totalSupplies">Διαθέσιμο απόθεμα αναλωσίμων</a></li>
+                        <li><a href="/loginuserReports">Ενέργειες Χρηστών</a></li>
+                    </ul>
+                </li>
+                <li><a href="order">Παραγγελία</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Αποσύνδεση</a></li>

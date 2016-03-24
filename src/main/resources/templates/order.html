@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h4>Παραγγελία</h4>
+        <p>
+            Εδώ βλέπετε την παραγγελία έως τώρα, μπορείτε να αφαιρέσετε
+            κάποιο αντικείμενο ή να την τυπώσετε σε αρχείο κειμένου για
+            περαιτέρω χρήση.
+        </p>
+        <div th:if="${order.items.isEmpty()}">
+            <p>Η παραγγελία σας είναι άδεια αυτή τη στιγμή.</p>
+        </div>
+        <div th:if="!${order.items.isEmpty()}">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Είδος</th>
+                        <th>Κατηγορία</th>
+                        <th>Ποσότητα</th>
+                    </tr>
+                </thead>
+                <tbdody>
+                    <tr th:each="item, iterationStatus:${order.items}">
+                        <td th:text="${item.key.orderableTitle}"></td>
+                        <td th:text="${item.key.category}"></td>
+                        <td th:text="${item.value}"></td>
+                    </tr>
+                </tbdody>
+            </table>
+            <form role="form" action="/order" method="post" name="saveDto">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                <button type="submit" class="btn btn-success">Αποθήκευση</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

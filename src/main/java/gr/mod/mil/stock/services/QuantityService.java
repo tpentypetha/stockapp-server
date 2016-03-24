@@ -4,6 +4,7 @@ package gr.mod.mil.stock.services;
 import gr.mod.mil.stock.dal.model.Cabinet;
 import gr.mod.mil.stock.dal.model.Consumable;
 import gr.mod.mil.stock.dal.model.Quantity;
+import gr.mod.mil.stock.dal.model.TransactionIndicator;
 import gr.mod.mil.stock.dal.repos.CabinetRepository;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;
 import gr.mod.mil.stock.dal.repos.QuantityRepository;
@@ -23,6 +24,9 @@ public class QuantityService {
 
     @Autowired
     private ConsumableRepository consumables;
+
+    @Autowired
+    ConsumableTransactionsService transactions;
 
     public Quantity getQuantity(String quantityid){
         return quantities.findByPublicid(quantityid);
@@ -45,6 +49,7 @@ public class QuantityService {
 
         cabinet.getQuantities().add(saved);
         cabinets.save(cabinet);
+        transactions.record(consumable, TransactionIndicator.DEPOSIT, initialAmount);
         return saved;
     }
 
@@ -56,6 +61,13 @@ public class QuantityService {
 
     public Quantity submitCount(String quantityid, int amount){
         Quantity quantity = quantities.findByPublicid(quantityid);
+
+        int previousAmount = quantity.getAmount();
+        int diff = previousAmount - amount;
+        TransactionIndicator indicator = diff < 0 ? TransactionIndicator.DEPOSIT : TransactionIndicator.WITHDRAWAL;
+        int transaction_amount = Math.abs(diff);
+        transactions.record(quantity.getConsumable(), indicator, transaction_amount);
+
         quantity.setAmount(amount);
         return quantities.save(quantity);
     }

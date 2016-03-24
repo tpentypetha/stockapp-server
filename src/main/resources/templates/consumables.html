@@ -39,7 +39,10 @@
                 <td th:text="${consumable.color}"></td>
                 <td th:if="${consumable.critical}" th:text="Ναι"></td>
                 <td th:if="${! consumable.critical}" th:text="Όχι"></td>
-                <td><a th:href="@{/showAvailable(id=${consumable.publicid})}" class="btn btn-info" role="button">Απόθεμα</a></td>
+                <td><a th:href="@{/showAvailable(id=${consumable.publicid})}" class="btn btn-info btn-sm" role="button">Απόθεμα</a></td>
+                <td><a th:href="@{/orderItem(
+                            title=${consumable.orderableTitle},
+                            category=${consumable.category})}" class="btn btn-sm btn-info">Παραγγελία</a></td>
             </tr>
             </tbody>
         </table>

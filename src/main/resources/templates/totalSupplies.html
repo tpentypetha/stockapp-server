@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3>Αναφορά διαθέσιμων αποθεμάτων</h3>
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Αναλώσιμο</th>
+                <th>Διαθέσιμο Απόθεμα</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="row, iterationStatus:${rows}">
+                <td th:text="${row.consumable.code}"></td>
+                <td th:class="${row.isLow()} ? 'danger' : 'success'" th:text="${row.currentSupply}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
