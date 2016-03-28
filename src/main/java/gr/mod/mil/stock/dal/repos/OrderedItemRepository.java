@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.dal.repos;
 
-import gr.mod.mil.stock.dal.model.OrderedItem;
+import gr.mod.mil.stock.dal.model.ordering.OrderedItem;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -27,6 +27,7 @@
                         <td th:text="${item.key.orderableTitle}"></td>
                         <td th:text="${item.key.category}"></td>
                         <td th:text="${item.value}"></td>
+                        <td><a th:href="@{/order/remove(title=${item.key.orderableTitle})}"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
                     </tr>
                 </tbdody>
             </table>

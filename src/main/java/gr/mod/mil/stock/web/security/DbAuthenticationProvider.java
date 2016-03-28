@@ -1,7 +1,7 @@
 package gr.mod.mil.stock.web.security;
 
 
-import gr.mod.mil.stock.dal.model.Loginuser;
+import gr.mod.mil.stock.dal.model.system.Loginuser;
 import gr.mod.mil.stock.dal.repos.LoginUserRepository;
 import gr.mod.mil.stock.services.LoginUserService;
 import gr.mod.mil.stock.services.PasswordHasher;
@@ -12,11 +12,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 
 @Service
 public class DbAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {

@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.webservices.dto;
 
-import gr.mod.mil.stock.dal.model.InkColor;
+import gr.mod.mil.stock.dal.model.stock.InkColor;
 
 public class ConsumableRequestDTO {
 

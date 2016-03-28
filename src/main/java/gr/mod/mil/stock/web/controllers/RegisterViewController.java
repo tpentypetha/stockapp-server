@@ -42,7 +42,7 @@ public class RegisterViewController {
             return "redirect:register?error";
         }
 
-        return "redirect:login";
+        return "redirect:/?newUser=true";
     }
 
 }

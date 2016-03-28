@@ -1,11 +1,9 @@
 package gr.mod.mil.stock.webservices.controllers;
 
-import gr.mod.mil.stock.dal.model.Cabinet;
+import gr.mod.mil.stock.dal.model.stock.Cabinet;
 import gr.mod.mil.stock.dal.repos.CabinetRepository;
 import gr.mod.mil.stock.services.CabinetService;
 import gr.mod.mil.stock.webservices.dto.CabinetRequestDTO;
-import gr.mod.mil.stock.webservices.dto.ConsumableReferenceDTO;
-import gr.mod.mil.stock.webservices.dto.ConsumableRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

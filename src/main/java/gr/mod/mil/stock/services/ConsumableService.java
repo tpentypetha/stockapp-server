@@ -1,8 +1,8 @@
 package gr.mod.mil.stock.services;
 
-import gr.mod.mil.stock.dal.model.Cabinet;
-import gr.mod.mil.stock.dal.model.Consumable;
-import gr.mod.mil.stock.dal.model.InkColor;
+import gr.mod.mil.stock.dal.model.stock.Cabinet;
+import gr.mod.mil.stock.dal.model.stock.Consumable;
+import gr.mod.mil.stock.dal.model.stock.InkColor;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;
 import gr.mod.mil.stock.webservices.dto.AvailabilityDTO;
 import org.slf4j.Logger;

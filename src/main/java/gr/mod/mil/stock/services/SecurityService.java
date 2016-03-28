@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.services;
 
-import gr.mod.mil.stock.dal.model.UserType;
+import gr.mod.mil.stock.dal.model.system.UserType;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,10 @@
 package gr.mod.mil.stock.services;
 
 
-import gr.mod.mil.stock.dal.model.Cabinet;
-import gr.mod.mil.stock.dal.model.Consumable;
-import gr.mod.mil.stock.dal.model.Quantity;
-import gr.mod.mil.stock.dal.model.TransactionIndicator;
+import gr.mod.mil.stock.dal.model.stock.Cabinet;
+import gr.mod.mil.stock.dal.model.stock.Consumable;
+import gr.mod.mil.stock.dal.model.stock.Quantity;
+import gr.mod.mil.stock.dal.model.stock.TransactionIndicator;
 import gr.mod.mil.stock.dal.repos.CabinetRepository;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;
 import gr.mod.mil.stock.dal.repos.QuantityRepository;

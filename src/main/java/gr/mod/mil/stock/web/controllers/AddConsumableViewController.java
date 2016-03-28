@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.web.controllers;
 
-import gr.mod.mil.stock.dal.model.InkColor;
+import gr.mod.mil.stock.dal.model.stock.InkColor;
 import gr.mod.mil.stock.services.ConsumableService;
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.web.dto.AddConsumableDTO;

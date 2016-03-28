@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.web.dto;
 
-import gr.mod.mil.stock.dal.model.Consumable;
+import gr.mod.mil.stock.dal.model.stock.Consumable;
 
 public class GenericConsumableReportRow {
 

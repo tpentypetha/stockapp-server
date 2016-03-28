@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.web.controllers.services;
 
-import gr.mod.mil.stock.dal.model.OrderHistory;
+import gr.mod.mil.stock.dal.model.ordering.OrderHistory;
 import gr.mod.mil.stock.services.OrderingService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;

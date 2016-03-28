@@ -19,16 +19,42 @@
                 <a class="navbar-brand" href="/">ΓΔΟΣΥ/ΔΙΣΤΥ/ΤΠΕΝΤ stock</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="printers">Εκτυπωτές</a></li>
-                <li><a href="cabinets">Ράφια</a></li>
-                <li><a href="consumables">Αναλώσιμα</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/">Συσκευές
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pcs">Προσωπικοί Υπολογιστές</a></li>
+                        <li><a href="displays">Οθόνες</a></li>
+                        <li><a href="printerDevices">Εκτυπωτές</a></li>
+                        <li><a href="hdds">Σκληροί Δίσκοι</a></li>
+                        <li><a href="kvms">KVM</a></li>
+                        <li><a href="rams">RAM</a></li>
+                        <li><a href="vgas">Κάρτες Γραφικών</a></li>
+                        <li><a href="ios">Περιφερειακά</a></li>
+                        <li><a href="psus">Τροφοδοτικά</a></li>
+                        <li><a href="routers">Δρομολογητές</a></li>
+                        <li><a href="switches">Switches</a></li>
+                        <li><a href="phones">Τηλέφωνα</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/">Υποστήριξη εκτύπωσης
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="printers">Μοντέλα Εκτυπωτών</a></li>
+                        <li><a href="cabinets">Ράφια</a></li>
+                        <li><a href="consumables">Αναλώσιμα</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="/">Αναφορές
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/consumableReports">Κατανάλωση αναλωσίμων</a></li>
+                        <li><a href="/consumableReports">Κινήσεις αναλωσίμων</a></li>
                         <li><a href="/totalSupplies">Διαθέσιμο απόθεμα αναλωσίμων</a></li>
+                        <li><a href="/orders">Αποθηκευμές Παραγγελίες</a></li>
                         <li><a href="/loginuserReports">Ενέργειες Χρηστών</a></li>
+                        <li><a href="/log">Καταγεγραμμένες Ενέργειες</a></li>
                     </ul>
                 </li>
                 <li><a href="order">Παραγγελία</a></li>

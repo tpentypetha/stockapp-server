@@ -7,6 +7,9 @@
         <div th:if="${notAdmin}" class="alert alert-warning">
             <strong>Προσοχή!</strong> Πρέπει ο λογαριασμός σας να είναι στο επίπεδο του διαχειριστή για να έχετε πρόσβαση.
         </div>
+        <div th:if="${newUser}" class="alert alert-success">
+            <strong>Συγχαρητηρια!</strong> O λογαριασμός σας δημιουργήθηκε με επιτυχία.
+        </div>
         <div class="row">
             <a href="/printers" class="btn btn-sq-lg btn-primary">
                 <h1 class="glyphicon glyphicon-wrench" aria-hidden="true"></h1> <br/>

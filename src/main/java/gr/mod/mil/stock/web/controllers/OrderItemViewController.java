@@ -1,8 +1,8 @@
 package gr.mod.mil.stock.web.controllers;
 
 import gr.mod.mil.stock.dal.repos.QuantityRepository;
-import gr.mod.mil.stock.ordering.Order;
-import gr.mod.mil.stock.dal.model.OrderedItem;
+import gr.mod.mil.stock.dal.model.ordering.Order;
+import gr.mod.mil.stock.dal.model.ordering.OrderedItem;
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.SecurityService;
 import gr.mod.mil.stock.web.dto.OrderableItemDetailsDTO;

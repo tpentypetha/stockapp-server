@@ -1,6 +1,5 @@
 package gr.mod.mil.stock.web.controllers;
 
-import gr.mod.mil.stock.dal.model.Quantity;
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.QuantityService;
 import gr.mod.mil.stock.web.dto.EditQuantityDTO;

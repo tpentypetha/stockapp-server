@@ -4,7 +4,7 @@ import gr.mod.mil.stock.services.ConsumableTransactionsService;
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.SecurityService;
 import gr.mod.mil.stock.web.dto.GenericConsumableReportRow;
-import gr.mod.mil.stock.web.dto.ConsumableReportDto;
+import gr.mod.mil.stock.web.dto.GenericDateRangeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,7 +40,7 @@ public class ConsumableReportViewController {
     @RequestMapping(value = "/consumableReports", method = RequestMethod.POST)
     public String doReport(
             @AuthenticationPrincipal UserDetails user,
-            @ModelAttribute("consumableReportDto")ConsumableReportDto data,
+            @ModelAttribute("consumableReportDto")GenericDateRangeDTO data,
             Model model){
         if (! security.isAuthorizedAsAdmin(user)){
             return "redirect:/?notAdmin=true";

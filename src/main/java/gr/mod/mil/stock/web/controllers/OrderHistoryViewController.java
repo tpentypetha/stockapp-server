@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.web.controllers;
 
-import gr.mod.mil.stock.dal.model.OrderHistory;
+import gr.mod.mil.stock.dal.model.ordering.OrderHistory;
 import gr.mod.mil.stock.dal.repos.OrderHistoryRepository;
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.SecurityService;
@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;

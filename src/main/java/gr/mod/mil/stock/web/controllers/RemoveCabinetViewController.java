@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.web.controllers;
 
-import gr.mod.mil.stock.dal.model.Cabinet;
+import gr.mod.mil.stock.dal.model.stock.Cabinet;
 import gr.mod.mil.stock.dal.repos.CabinetRepository;
 import gr.mod.mil.stock.services.CabinetService;
 import gr.mod.mil.stock.services.LogService;

@@ -1,11 +1,10 @@
 package gr.mod.mil.stock.web.controllers;
 
-import gr.mod.mil.stock.dal.model.OrderHistory;
-import gr.mod.mil.stock.ordering.Order;
+import gr.mod.mil.stock.dal.model.ordering.OrderHistory;
+import gr.mod.mil.stock.dal.model.ordering.Order;
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.OrderingService;
 import gr.mod.mil.stock.services.SecurityService;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Date;
 
 @Controller
@@ -56,6 +51,19 @@ public class OrderViewController {
         OrderHistory history = service.saveCurrentOrder();
         logger.log("saved an Order at: " + new Date().toString());
         return "redirect:/orderhistory?saved=true&historyid="+history.getPublicid();
+    }
+
+    @RequestMapping("/order/remove")
+    public String removeItem(
+            @AuthenticationPrincipal UserDetails userDetails,
+            @RequestParam("title") String title
+    ){
+        if (!security.isAuthorizedAsAdmin(userDetails)){
+            return "redirect:/?notAdmin=true";
+        }
+        order.removeItemByTitle(title);
+        logger.log("removed an item from the order with title: " + title);
+        return "redirect:/order";
     }
 
 }

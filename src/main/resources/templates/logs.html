@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3>Αναφορά Καταγεγραμμένων Ενεργειών</h3>
+        <p>Επιλέξτε ένα εύρος ημερομηνιών </p>
+        <div class="col-md-4">
+            <form role="form" method="get" action="/log">
+                <div class="form-group">
+                    <label for="from">Από:</label>
+                    <input type="date" class="form-control" id="from" name="from"></input>
+                </div>
+                <div class="form-group">
+                    <label for="to">Μέχρι:</label>
+                    <input type="date" class="form-control" id="to" name="to"></input>
+                </div>
+                <button type="submit" class="btn btn-success">Αναφορά</button>
+            </form>
+        </div>
+        <div th:if="${entries}">
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Χρήστης</th>
+                    <th>Ενέργεια</th>
+                    <th>Ημ/νια</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="entry, iterationStatus:${entries}">
+                    <td th:text="${entry.who}"></td>
+                    <td th:text="${entry.what}"></td>
+                    <td th:text="${entry.when}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>

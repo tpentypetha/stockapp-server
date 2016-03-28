@@ -14,9 +14,13 @@ public class HomeViewController {
     LogService logger;
 
     @RequestMapping("/")
-    public String render(@RequestParam(value = "notAdmin", required = false) boolean notAdmin, Model model){
+    public String render(
+            @RequestParam(value = "notAdmin", required = false) boolean notAdmin,
+            @RequestParam(value = "newUser", required = false) boolean newUser,
+            Model model){
         logger.log("visited Home page");
         model.addAttribute("notAdmin", notAdmin);
+        model.addAttribute("newUser", newUser);
         return "home";
     }
 }

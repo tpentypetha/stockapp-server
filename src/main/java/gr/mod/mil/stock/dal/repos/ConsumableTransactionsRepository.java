@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.dal.repos;
 
-import gr.mod.mil.stock.dal.model.ConsumableTransaction;
+import gr.mod.mil.stock.dal.model.stock.ConsumableTransaction;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

@@ -1,7 +1,7 @@
 package gr.mod.mil.stock.services;
 
-import gr.mod.mil.stock.dal.model.Loginuser;
-import gr.mod.mil.stock.dal.model.UserType;
+import gr.mod.mil.stock.dal.model.system.Loginuser;
+import gr.mod.mil.stock.dal.model.system.UserType;
 import gr.mod.mil.stock.dal.repos.LoginUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

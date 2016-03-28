@@ -1,21 +1,18 @@
 package gr.mod.mil.stock.services;
 
-import gr.mod.mil.stock.dal.model.OrderHistory;
-import gr.mod.mil.stock.dal.model.OrderedItem;
+import gr.mod.mil.stock.dal.model.ordering.OrderHistory;
+import gr.mod.mil.stock.dal.model.ordering.OrderedItem;
 import gr.mod.mil.stock.dal.repos.OrderHistoryRepository;
 import gr.mod.mil.stock.dal.repos.OrderedItemRepository;
-import gr.mod.mil.stock.ordering.Order;
+import gr.mod.mil.stock.dal.model.ordering.Order;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.apache.pdfbox.printing.PDFPageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,13 +1,11 @@
 package gr.mod.mil.stock.webservices.controllers;
 
-import gr.mod.mil.stock.dal.model.Quantity;
+import gr.mod.mil.stock.dal.model.stock.Quantity;
 import gr.mod.mil.stock.services.QuantityService;
 import gr.mod.mil.stock.webservices.dto.AddQuantityRequestDTO;
 import gr.mod.mil.stock.webservices.dto.CountRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 
 @RestController
 public class QuantitiesController {

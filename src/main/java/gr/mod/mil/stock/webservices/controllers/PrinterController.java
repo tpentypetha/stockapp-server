@@ -1,7 +1,7 @@
 package gr.mod.mil.stock.webservices.controllers;
 
-import gr.mod.mil.stock.dal.model.Consumable;
-import gr.mod.mil.stock.dal.model.Printer;
+import gr.mod.mil.stock.dal.model.stock.Consumable;
+import gr.mod.mil.stock.dal.model.stock.Printer;
 import gr.mod.mil.stock.dal.repos.PrinterRepository;
 import gr.mod.mil.stock.services.PrinterService;
 import gr.mod.mil.stock.webservices.dto.AddConsumableRequestDTO;

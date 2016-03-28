@@ -1,9 +1,7 @@
 package gr.mod.mil.stock.services;
 
 import gr.mod.mil.stock.StockApplication;
-import gr.mod.mil.stock.dal.model.Cabinet;
-import gr.mod.mil.stock.dal.model.Consumable;
-import gr.mod.mil.stock.dal.model.InkColor;
+import gr.mod.mil.stock.dal.model.stock.Cabinet;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

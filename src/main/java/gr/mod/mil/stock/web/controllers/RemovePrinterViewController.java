@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.web.controllers;
 
-import gr.mod.mil.stock.dal.model.Printer;
+import gr.mod.mil.stock.dal.model.stock.Printer;
 import gr.mod.mil.stock.dal.repos.PrinterRepository;
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.PrinterService;

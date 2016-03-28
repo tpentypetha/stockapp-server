@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.dal.repos;
 
-import gr.mod.mil.stock.dal.model.Quantity;
+import gr.mod.mil.stock.dal.model.stock.Quantity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

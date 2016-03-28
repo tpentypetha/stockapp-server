@@ -16,6 +16,10 @@
             <tr th:each="row, iterationStatus:${rows}">
                 <td th:text="${row.consumable.code}"></td>
                 <td th:class="${row.isLow()} ? 'danger' : 'success'" th:text="${row.currentSupply}"></td>
+                <td><a th:href="@{/orderItem(
+                            category=${row.consumable.category},
+                            currentSupply=${row.currentSupply},
+                            title=${row.consumable.orderableTitle})}" class="btn btn-sm btn-primary-outline">Παραγγελία</a></td>
             </tr>
             </tbody>
         </table>

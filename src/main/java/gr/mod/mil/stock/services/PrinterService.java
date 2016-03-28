@@ -1,7 +1,7 @@
 package gr.mod.mil.stock.services;
 
-import gr.mod.mil.stock.dal.model.Consumable;
-import gr.mod.mil.stock.dal.model.Printer;
+import gr.mod.mil.stock.dal.model.stock.Consumable;
+import gr.mod.mil.stock.dal.model.stock.Printer;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;
 import gr.mod.mil.stock.dal.repos.PrinterRepository;
 import org.springframework.beans.factory.annotation.Autowired;

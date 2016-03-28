@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.dal.repos;
 
-import gr.mod.mil.stock.dal.model.Loginuser;
+import gr.mod.mil.stock.dal.model.system.Loginuser;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

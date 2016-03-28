@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.services;
 
-import gr.mod.mil.stock.dal.model.LogEntry;
+import gr.mod.mil.stock.dal.model.system.LogEntry;
 import gr.mod.mil.stock.dal.repos.LogRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

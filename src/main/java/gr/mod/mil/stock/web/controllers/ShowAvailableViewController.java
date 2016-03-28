@@ -1,6 +1,6 @@
 package gr.mod.mil.stock.web.controllers;
 
-import gr.mod.mil.stock.dal.model.Consumable;
+import gr.mod.mil.stock.dal.model.stock.Consumable;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;
 import gr.mod.mil.stock.services.ConsumableService;
 import gr.mod.mil.stock.services.LogService;
