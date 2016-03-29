@@ -1,0 +1,16 @@
+.container-barcode{
+	width: 741px;
+	margin-top: 3px;
+}
+
+.barcode{
+	border: 1px #F8F8F8 dashed;
+    width: 247px;
+    height: 150px;
+    padding-top: 10px;
+}
+
+.img-height{
+	height: 65px;
+    width: 189px;
+}	
