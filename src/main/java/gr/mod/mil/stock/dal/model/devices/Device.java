@@ -37,11 +37,14 @@ public abstract class Device {
     public String getPublicid() { return publicid; }
     public void setPublicid(String publicid) { this.publicid = publicid; }
 
-    public Device(DeviceStatus status, String position, String modelName, String serialNum, String partNum) {
+    public Device(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid) {
         this.status = status;
         this.position = position;
         this.modelName = modelName;
         this.serialNum = serialNum;
         this.partNum = partNum;
+        this.publicid = publicid;
     }
+
+    public Device() {}
 }

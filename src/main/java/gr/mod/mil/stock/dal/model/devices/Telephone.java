@@ -13,9 +13,12 @@ public class Telephone extends Device {
     public boolean getFax() { return  fax; }
     public void setFax(boolean fax) { this.fax = fax; }
 
-    public Telephone(DeviceStatus status, String position, String modelName, String serialNum, String partNum, boolean digital, boolean fax) {
-        super(status, position, modelName, serialNum, partNum);
+    public Telephone(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, boolean digital, boolean fax) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.digital = digital;
         this.fax = fax;
+    }
+
+    public Telephone() {
     }
 }

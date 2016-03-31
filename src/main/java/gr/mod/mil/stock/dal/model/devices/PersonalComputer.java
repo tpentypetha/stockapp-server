@@ -14,8 +14,8 @@ public class PersonalComputer extends Device {
 
     @Enumerated(EnumType.STRING)
     private CaseType caseType;
-    public CaseType getLaptop() { return caseType; }
-    public void setLaptop(CaseType laptop) { this.caseType = laptop; }
+    public CaseType getCaseType() { return caseType; }
+    public void setCaseType(CaseType caseType) { this.caseType = caseType; }
 
     private int ram; // in MB
     public int getRam() { return ram; }
@@ -33,8 +33,8 @@ public class PersonalComputer extends Device {
     public String getCpuSocket() { return  cpuSocket; }
     public void setCpuSocket(String cpuSocket) { this.cpuSocket = cpuSocket; }
 
-    public PersonalComputer(DeviceStatus status, String position, String modelName, String serialNum, String partNum, PersonalComputerDomain domain, CaseType caseType, int ram, int memory, String cpu, String cpuSocket) {
-        super(status, position, modelName, serialNum, partNum);
+    public PersonalComputer(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, PersonalComputerDomain domain, CaseType caseType, int ram, int memory, String cpu, String cpuSocket) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.domain = domain;
         this.caseType = caseType;
         this.ram = ram;
@@ -42,4 +42,6 @@ public class PersonalComputer extends Device {
         this.cpu = cpu;
         this.cpuSocket = cpuSocket;
     }
+
+    public PersonalComputer() {}
 }

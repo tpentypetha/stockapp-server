@@ -17,9 +17,12 @@ public class Memory extends Device {
     public int getCapacity() { return capacity; }
     public void setCapacity(int capacity) { this.capacity = capacity; }
 
-    public Memory(DeviceStatus status, String position, String modelName, String serialNum, String partNum, MemorySocket socket, int capacity) {
-        super(status, position, modelName, serialNum, partNum);
+    public Memory(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, MemorySocket socket, int capacity) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.socket = socket;
         this.capacity = capacity;
+    }
+
+    public Memory() {
     }
 }

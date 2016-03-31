@@ -21,11 +21,12 @@ public class KeyboardVideoMouse extends Device {
     public DisplayPort getPort() { return port; }
     public void setPort(DisplayPort port) { this.port = port; }
 
-    public KeyboardVideoMouse(DeviceStatus status, String position, String modelName, String serialNum, String partNum, int numDevicesSupported, PeripheralConnectivity connectivity, DisplayPort port) {
-        super(status, position, modelName, serialNum, partNum);
+    public KeyboardVideoMouse(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, int numDevicesSupported, PeripheralConnectivity connectivity, DisplayPort port) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.numDevicesSupported = numDevicesSupported;
         this.connectivity = connectivity;
         this.port = port;
     }
 
+    public KeyboardVideoMouse() {}
 }

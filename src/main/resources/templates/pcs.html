@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-6">
                 <div id="custom-search-input">
-                    <form role="form" action="printers" method="get">
+                    <form role="form" action="/pcs" method="get">
                         <div class="input-group col-md-12">
                             <input type="text" name="query" class="form-control input-lg" placeholder="Εύρεση" />
                         <span class="input-group-btn">
@@ -21,6 +21,41 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div th:if="${pcs}">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Μοντέλο</th>
+                            <th>Serial Number</th>
+                            <th>Part Number</th>
+                            <th>Domain</th>
+                            <th>Κατάσταση</th>
+                            <th>Τοποθεσία</th>
+                            <th>Τύπος PC</th>
+                            <th>RAM (MB)</th>
+                            <th>HDD (GB)</th>
+                            <th>CPU</th>
+                            <th>Socket</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pc, iterationStatus:${pcs}">
+                            <td th:text="${pc.modelName}"></td>
+                            <td th:text="${pc.serialNum}"></td>
+                            <td th:text="${pc.partNum}"></td>
+                            <td th:text="${pc.domain}"></td>
+                            <td th:text="${pc.status}"></td>
+                            <td th:text="${pc.position}"></td>
+                            <td th:text="${pc.caseType}"></td>
+                            <td th:text="${pc.ram}"></td>
+                            <td th:text="${pc.memory}"></td>
+                            <td th:text="${pc.cpu}"></td>
+                            <td th:text="${pc.cpuSocket}"></td>
+                            <td><a th:href="@{/editpc(id=${pc.publicid})}" class="btn btn-sm btn-primary">Επεξεργασία</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -17,11 +17,13 @@ public class PowerSupplyUnit extends Device {
     public int getIdeSockets() { return ideSockets; }
     public void setIdeSockets(int ideSockets) { this.ideSockets = ideSockets; }
 
-    public PowerSupplyUnit(DeviceStatus status, String position, String modelName, String serialNum, String partNum, int watt, int sataSockets, int ideSockets) {
-        super(status, position, modelName, serialNum, partNum);
+    public PowerSupplyUnit(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, int watt, int sataSockets, int ideSockets) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.watt = watt;
         this.sataSockets = sataSockets;
         this.ideSockets = ideSockets;
     }
 
+    public PowerSupplyUnit() {
+    }
 }

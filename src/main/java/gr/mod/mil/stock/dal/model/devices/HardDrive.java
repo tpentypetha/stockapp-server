@@ -21,11 +21,13 @@ public class HardDrive extends Device {
     public int getCapacity() { return capacity; }
     public void setCapacity(int capacity) { this.capacity = capacity; }
 
-    public HardDrive(DeviceStatus status, String position, String modelName, String serialNum, String partNum, HardDriveTechnology technology, HardDriveSocket socket, int capacity) {
-        super(status, position, modelName, serialNum, partNum);
+    public HardDrive(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, HardDriveTechnology technology, HardDriveSocket socket, int capacity) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.technology = technology;
         this.socket = socket;
         this.capacity = capacity;
     }
+
+    public HardDrive() {}
 
 }

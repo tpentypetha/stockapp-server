@@ -8,10 +8,10 @@
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
             <div class="form-group">
                 <label for="code">Κωδικός Αναλωσίμου:</label>
-                <input type="text" class="form-control" id="code" name="code"></input>
+                <input type="text" class="form-control" id="code" name="code" required="required"></input>
                 <label><b>Χρώμα</b></label>
                 <div class="radio">
-                    <label><input type="radio" name="color" value="BLACK" selected="true"></input>BLACK</label>
+                    <label><input type="radio" name="color" value="BLACK" required="required"></input>BLACK</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="color" value="CYAN"></input>CYAN</label>
@@ -33,7 +33,7 @@
                 </div>
                 <label><b>Προτεραιότητα προμήθειας</b></label>
                 <div class="radio">
-                    <label><input type="radio" name="critical" value="true"></input>Ναι</label>
+                    <label><input type="radio" name="critical" value="true" required="required"></input>Ναι</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="critical" value="false"></input>Όχι</label>

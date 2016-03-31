@@ -2,6 +2,7 @@ package gr.mod.mil.stock.web.controllers;
 
 import gr.mod.mil.stock.dal.model.devices.PersonalComputer;
 import gr.mod.mil.stock.dal.model.devices.builders.PersonalComputerBuilder;
+import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.PersonalComputerService;
 import gr.mod.mil.stock.web.dto.AddPcDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class AddPersonalComputerViewController {
+
+    @Autowired
+    LogService logger;
 
     @Autowired
     PersonalComputerService service;
@@ -35,6 +39,7 @@ public class AddPersonalComputerViewController {
                 .setCpuSocket(data.getCpuSocket())
                 .setDomain(data.getDomain())
                 .setCaseType(data.getCaseType()));
+        logger.log("added a personal computer with id: " + created.getPublicid());
         return "redirect:/pcs";
     }
 }

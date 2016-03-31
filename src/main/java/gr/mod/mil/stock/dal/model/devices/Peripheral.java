@@ -30,11 +30,13 @@ public class Peripheral extends Device {
         this.keyboard = keyboard;
     }
 
-    public Peripheral(DeviceStatus status, String position, String modelName, String serialNum, String partNum, PeripheralConnectivity connectivity, boolean mouse, boolean keyboard) {
-        super(status, position, modelName, serialNum, partNum);
+    public Peripheral(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, PeripheralConnectivity connectivity, boolean mouse, boolean keyboard) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.connectivity = connectivity;
         this.mouse = mouse;
         this.keyboard = keyboard;
     }
 
+    public Peripheral() {
+    }
 }

@@ -21,11 +21,13 @@ public class Display extends Device {
     public boolean getHdmi() { return hdmi; }
     public void setHdmi(boolean hdmi) { this.hdmi = hdmi; }
 
-    public Display(DeviceStatus status, String position, String modelName, String serialNum, String partNum, int inches, boolean vga, boolean dvi, boolean hdmi) {
-        super(status, position, modelName, serialNum, partNum);
+    public Display(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, int inches, boolean vga, boolean dvi, boolean hdmi) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.inches = inches;
         this.vga = vga;
         this.dvi = dvi;
         this.hdmi = hdmi;
     }
+
+    public Display() {}
 }

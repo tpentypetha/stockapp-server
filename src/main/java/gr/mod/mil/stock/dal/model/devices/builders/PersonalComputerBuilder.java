@@ -1,20 +1,17 @@
 package gr.mod.mil.stock.dal.model.devices.builders;
 
 import gr.mod.mil.stock.dal.model.devices.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 public class PersonalComputerBuilder {
 
-    DevicePublicidGenerator generator = new DevicePublicidGenerator();
+    private final DevicePublicidGenerator generator = new DevicePublicidGenerator();
 
     private DeviceStatus status;
     private String position;
     private String modelName;
     private String serialNum;
     private String partNum;
+    private String publicid;
     private PersonalComputerDomain domain;
     private CaseType caseType;
     private int ram;
@@ -44,6 +41,11 @@ public class PersonalComputerBuilder {
 
     public PersonalComputerBuilder setPartNum(String partNum) {
         this.partNum = partNum;
+        return this;
+    }
+
+    public PersonalComputerBuilder setPublicid(String publicid) {
+        this.publicid = publicid;
         return this;
     }
 
@@ -78,10 +80,8 @@ public class PersonalComputerBuilder {
     }
 
     public PersonalComputer createPersonalComputer() {
-        PersonalComputer created =
-            new PersonalComputer(status, position, modelName, serialNum, partNum, domain, caseType, ram, memory, cpu, cpuSocket);
+        PersonalComputer created = new PersonalComputer(status, position, modelName, serialNum, partNum, publicid, domain, caseType, ram, memory, cpu, cpuSocket);
         generator.generate(created);
-
         return created;
     }
 }

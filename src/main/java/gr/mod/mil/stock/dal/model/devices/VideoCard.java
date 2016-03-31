@@ -16,9 +16,12 @@ public class VideoCard extends Device {
     public int getCapacity() { return capacity; }
     public void setCapacity(int capacity) { this.capacity = capacity; }
 
-    public VideoCard(DeviceStatus status, String position, String modelName, String serialNum, String partNum, VideoCardInterface videoif, int capacity) {
-        super(status, position, modelName, serialNum, partNum);
+    public VideoCard(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, VideoCardInterface videoif, int capacity) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.videoif = videoif;
         this.capacity = capacity;
+    }
+
+    public VideoCard() {
     }
 }

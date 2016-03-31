@@ -43,6 +43,9 @@
                 <td><a th:href="@{/orderItem(
                             title=${consumable.orderableTitle},
                             category=${consumable.category})}" class="btn btn-sm btn-info">Παραγγελία</a></td>
+                <td><a th:href="@{/addToBarcodePage(
+                            printableText=${consumable.printableText},
+                            barcodeText=${consumable.barcodeText})}" class="btn btn-sm btn-info">Barcode</a></td>
             </tr>
             </tbody>
         </table>

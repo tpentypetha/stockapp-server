@@ -16,9 +16,12 @@ public class Switch extends Device {
     public int getNumInterfaces() { return numInterfaces; }
     public void setNumInterfaces(int numInterfaces) { this.numInterfaces = numInterfaces; }
 
-    public Switch(DeviceStatus status, String position, String modelName, String serialNum, String partNum, SwitchPort port, int numInterfaces) {
-        super(status, position, modelName, serialNum, partNum);
+    public Switch(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, SwitchPort port, int numInterfaces) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.port = port;
         this.numInterfaces = numInterfaces;
+    }
+
+    public Switch() {
     }
 }

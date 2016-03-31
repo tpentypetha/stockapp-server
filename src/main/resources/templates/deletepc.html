@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>Προσοχή</h1>
+                <h2 th:text="${pc.modelName}"></h2>
+                <div class="error-details">
+                    Είστε σίγουρος(η) ότι θέλετε να διαγράψετε αυτόν τον προσωπικό υπολογιστή;
+                </div>
+                <div class="error-actions">
+                    <form role="form" action="deletepc" method="post" name="deletePcDto">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                        <input type="hidden" name="publicid" th:value="${pc.publicid}"></input>
+                        <button type="submit" class="btn btn-danger">Διαγραφή!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

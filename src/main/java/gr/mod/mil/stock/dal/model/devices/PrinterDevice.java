@@ -24,11 +24,14 @@ public class PrinterDevice extends Device {
     public PrinterTechnology getTechnology() { return technology; }
     public void setTechnology(PrinterTechnology technology) { this.technology = technology; }
 
-    public PrinterDevice(DeviceStatus status, String position, String modelName, String serialNum, String partNum, boolean colorPrinter, boolean networkPrinter, boolean multiPurposeMachine, PrinterTechnology technology) {
-        super(status, position, modelName, serialNum, partNum);
+    public PrinterDevice(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, boolean colorPrinter, boolean networkPrinter, boolean multiPurposeMachine, PrinterTechnology technology) {
+        super(status, position, modelName, serialNum, partNum, publicid);
         this.colorPrinter = colorPrinter;
         this.networkPrinter = networkPrinter;
         this.multiPurposeMachine = multiPurposeMachine;
         this.technology = technology;
+    }
+
+    public PrinterDevice() {
     }
 }

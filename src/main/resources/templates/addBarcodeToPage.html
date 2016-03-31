@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div>
+            <h3 th:text="${printableText}"></h3>
+            <img th:src="@{/barcode(text=${barcodeText})}"></img>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="col-md-4">
+
+            <form role="form" name="addBarcodeDto" action="/barcodeGen" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                <input type="hidden" name="printableText" th:value="${printableText}"></input>
+                <input type="hidden" name="barcodeText" th:value="${barcodeText}"></input>
+                <div class="form-group">
+                    <label for="multitude">Ποσότητα: </label>
+                    <input type="number" min="1" max="21" name="multitude" id="multitude" required="required"></input>
+                </div>
+                <button type="submit" class="btn btn-sm btn-success">Προσθήκη στην Σελίδα Barcode</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

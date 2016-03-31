@@ -1,13 +1,14 @@
 package gr.mod.mil.stock.dal.model.stock;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import gr.mod.mil.stock.dal.model.barcode.BarcodePrintable;
 import gr.mod.mil.stock.dal.model.ordering.Orderable;
 import gr.mod.mil.stock.dal.model.ordering.OrderableCategory;
 
 import javax.persistence.*;
 
 @Entity
-public class Consumable implements Orderable {
+public class Consumable implements Orderable, BarcodePrintable {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) @JsonIgnore
     Long id;
@@ -43,5 +44,15 @@ public class Consumable implements Orderable {
     @Override
     public OrderableCategory getCategory() {
         return OrderableCategory.CONSUMABLE;
+    }
+
+    @Override
+    public String getBarcodeText() {
+        return code;
+    }
+
+    @Override
+    public String getPrintableText() {
+        return code;
     }
 }

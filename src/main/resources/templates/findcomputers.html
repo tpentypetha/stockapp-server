@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3>Εύρεση Υπολογιστών με βάση το domain και το status.</h3>
+        <p>Επιλέξτε domain και status και πατήστε Εύρεση</p>
+        <div class="col-md-4">
+            <form role="form" method="get" action="/findByComputerDomainStatus">
+                <label>Domain Υπολογιστή:</label>
+                <div class="radio">
+                    <label><input type="radio" name="domain" value="FREEDOS" required="required"></input>FREEDOS</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="domain" value="TPCMOD"></input>TPCMOD</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="domain" value="TPCGDAEE"></input>TPCGDAEE</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="domain" value="MOD"></input>MOD</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="domain" value="INTPC"></input>INTPC</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="domain" value="DOMAINGES"></input>DOMAINGES</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="domain" value="MIS"></input>MIS</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="domain" value="WAN"></input>WAN</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="domain" value="OLKES"></input>OLKES</label>
+                </div>
+                <label>Κατάσταση:</label>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="STOCKED" required="required"></input>STOCKED</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="DEPLOYED"></input>DEPLOYED</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="REPAIR"></input>REPAIR</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="OBSOLETE"></input>OBSOLETE</label>
+                </div>
+                <button type="submit" class="btn btn-sm btn-success">Εύρεση</button>
+            </form>
+        </div>
+        <span style="height: 50px;"></span>
+        <div th:if="${computers}">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Υπολογιστής</th>
+                        <th>Τοποθεσία</th>
+                        <th>Μνήμη σε (MB)</th>
+                        <th>Επεξεργαστής</th>
+                        <th>Δίσκος σε (GB)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="computer, iterationStatus:${computers}">
+                        <td th:text="${computer.modelName}"></td>
+                        <td th:text="${computer.position}"></td>
+                        <td th:text="${computer.ram}"></td>
+                        <td th:text="${computer.cpu}"></td>
+                        <td th:text="${computer.memory}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>
