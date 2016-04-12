@@ -1,11 +1,13 @@
 package gr.mod.mil.stock.dal.model.devices;
 
+import gr.mod.mil.stock.dal.model.barcode.BarcodePrintable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
-public class HardDrive extends Device {
+public class HardDrive extends Device implements BarcodePrintable {
 
     @Enumerated(EnumType.STRING)
     private HardDriveTechnology technology;
@@ -21,13 +23,22 @@ public class HardDrive extends Device {
     public int getCapacity() { return capacity; }
     public void setCapacity(int capacity) { this.capacity = capacity; }
 
-    public HardDrive(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, HardDriveTechnology technology, HardDriveSocket socket, int capacity) {
+    public HardDrive() {}
+
+    public HardDrive(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, int capacity, HardDriveTechnology technology, HardDriveSocket socket) {
         super(status, position, modelName, serialNum, partNum, publicid);
         this.technology = technology;
         this.socket = socket;
         this.capacity = capacity;
     }
 
-    public HardDrive() {}
+    @Override
+    public String getBarcodeText() {
+        return this.getPublicid();
+    }
 
+    @Override
+    public String getPrintableText() {
+        return getModelName();
+    }
 }

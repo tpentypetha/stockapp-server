@@ -1,11 +1,13 @@
 package gr.mod.mil.stock.dal.model.devices;
 
+import gr.mod.mil.stock.dal.model.barcode.BarcodePrintable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
-public class PrinterDevice extends Device {
+public class PrinterDevice extends Device implements BarcodePrintable {
 
     private boolean colorPrinter;
     public boolean getColorPrinter() { return colorPrinter; }
@@ -33,5 +35,15 @@ public class PrinterDevice extends Device {
     }
 
     public PrinterDevice() {
+    }
+
+    @Override
+    public String getBarcodeText() {
+        return this.getPublicid();
+    }
+
+    @Override
+    public String getPrintableText() {
+        return getModelName();
     }
 }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <a href="/addDisplayDevice" class="btn btn-info" role="button">Προσθήκη</a>
+            </div>
+            <div class="col-md-6">
+                <div id="custom-search-input">
+                    <form role="form" action="/displayDevices" method="get">
+                        <div class="input-group col-md-12">
+                            <input type="text" name="query" class="form-control input-lg" placeholder="Εύρεση" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div th:if="${printers}">
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Μοντέλο</th>
+                    <th>Serial Number</th>
+                    <th>Part Number</th>
+                    <th>Κατάσταση</th>
+                    <th>Τοποθεσία</th>
+                    <th>Διαγώνιος</th>
+                    <th>VGA</th>
+                    <th>DVI</th>
+                    <th>HDMI</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="display, iterationStatus:${displays}">
+                    <td th:text="${display.modelName}"></td>
+                    <td th:text="${display.serialNum}"></td>
+                    <td th:text="${display.partNum}"></td>
+                    <td th:text="${display.status}"></td>
+                    <td th:text="${display.position}"></td>
+                    <td th:text="${display.inches}"></td>
+                    <td th:text="${display.vga}"></td>
+                    <td th:text="${display.dvi}"></td>
+                    <td th:text="${display.hdmi}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>

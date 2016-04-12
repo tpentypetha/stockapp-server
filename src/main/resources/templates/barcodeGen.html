@@ -5,13 +5,11 @@
 <section layout:fragment="content">
     <div class="container">
 		<div th:if="${pageFull}" class="alert alert-warning">
-			<stron>Προσοχή!</stron>
-			Δεν μπορείτε να προσθέσετε τόσους κωδικούς. Η σελίδα έχει:
-			<p th:text="${remainder}"></p>
-			κωδικούς διαθέσιμους.
+			<strong>Προσοχή!</strong>
+			Δεν μπορείτε να προσθέσετε επιπλέον κωδικούς. <span th:text="${remainder}"></span> κωδικοί διαθέσιμοι.
 		</div>
-	    <div class="row container-barcode text-center" th:each="barcode: ${barcodes}">
-			<div class="col-xs-4 barcode">
+	    <div class="row container-barcode text-center">
+			<div class="col-xs-4 barcode" th:each="barcode: ${barcodes}">
 				<div>
 					<p class="h6">ΤΠΕΝΤ - ΝΑ ΜΗΝ ΑΦΑΙΡΕΙΤΑΙ</p>
 				</div>

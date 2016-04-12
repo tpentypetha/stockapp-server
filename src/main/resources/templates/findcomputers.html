@@ -71,6 +71,7 @@
                         <td th:text="${computer.ram}"></td>
                         <td th:text="${computer.cpu}"></td>
                         <td th:text="${computer.memory}"></td>
+                        <td><a class="btn btn-primary btn-sm" th:href="@{/addToBarcodePage(barcodeText=${computer.barcodeText},printableText=${computer.printableText})}">Barcode</a></td>
                     </tr>
                 </tbody>
             </table>

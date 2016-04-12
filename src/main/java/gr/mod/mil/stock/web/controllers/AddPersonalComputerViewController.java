@@ -40,6 +40,6 @@ public class AddPersonalComputerViewController {
                 .setDomain(data.getDomain())
                 .setCaseType(data.getCaseType()));
         logger.log("added a personal computer with id: " + created.getPublicid());
-        return "redirect:/pcs";
+        return "redirect:/addToBarcodePage?barcodeText="+created.getBarcodeText()+"&printableText="+created.getPrintableText();
     }
 }

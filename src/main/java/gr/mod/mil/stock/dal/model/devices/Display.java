@@ -1,9 +1,11 @@
 package gr.mod.mil.stock.dal.model.devices;
 
+import gr.mod.mil.stock.dal.model.barcode.BarcodePrintable;
+
 import javax.persistence.Entity;
 
 @Entity
-public class Display extends Device {
+public class Display extends Device implements BarcodePrintable {
 
     private int inches;
     public int getInches() { return inches; }
@@ -21,13 +23,23 @@ public class Display extends Device {
     public boolean getHdmi() { return hdmi; }
     public void setHdmi(boolean hdmi) { this.hdmi = hdmi; }
 
-    public Display(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, int inches, boolean vga, boolean dvi, boolean hdmi) {
+    public Display(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, boolean hdmi, int inches, boolean vga, boolean dvi) {
         super(status, position, modelName, serialNum, partNum, publicid);
+        this.hdmi = hdmi;
         this.inches = inches;
         this.vga = vga;
         this.dvi = dvi;
-        this.hdmi = hdmi;
     }
 
     public Display() {}
+
+    @Override
+    public String getBarcodeText() {
+        return this.getPublicid();
+    }
+
+    @Override
+    public String getPrintableText() {
+        return this.getModelName();
+    }
 }

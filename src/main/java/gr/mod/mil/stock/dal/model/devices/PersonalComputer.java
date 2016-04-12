@@ -1,11 +1,13 @@
 package gr.mod.mil.stock.dal.model.devices;
 
+import gr.mod.mil.stock.dal.model.barcode.BarcodePrintable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
-public class PersonalComputer extends Device {
+public class PersonalComputer extends Device implements BarcodePrintable{
 
     @Enumerated(EnumType.STRING)
     private PersonalComputerDomain domain;
@@ -44,4 +46,14 @@ public class PersonalComputer extends Device {
     }
 
     public PersonalComputer() {}
+
+    @Override
+    public String getBarcodeText() {
+        return this.getPublicid();
+    }
+
+    @Override
+    public String getPrintableText() {
+        return this.getModelName();
+    }
 }

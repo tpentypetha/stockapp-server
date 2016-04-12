@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <a href="/addHardDevice" class="btn btn-info" role="button">Προσθήκη</a>
+            </div>
+            <div class="col-md-6">
+                <div id="custom-search-input">
+                    <form role="form" action="/hardDevices" method="get">
+                        <div class="input-group col-md-12">
+                            <input type="text" name="query" class="form-control input-lg" placeholder="Εύρεση" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div th:if="${printers}">
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Μοντέλο</th>
+                    <th>Serial Number</th>
+                    <th>Part Number</th>
+                    <th>Κατάσταση</th>
+                    <th>Τοποθεσία</th>
+                    <th>Χωρητικότητα</th>
+                    <th>Τεχνολογία</th>
+                    <th>Πρωτόκολλο Διασυνδεσης</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="hardDrive, iterationStatus:${hardDrives}">
+                    <td th:text="${hardDrive.modelName}"></td>
+                    <td th:text="${hardDrive.serialNum}"></td>
+                    <td th:text="${hardDrive.partNum}"></td>
+                    <td th:text="${hardDrive.status}"></td>
+                    <td th:text="${hardDrive.position}"></td>
+                    <td th:text="${hardDrive.capacity}"></td>
+                    <td th:text="${hardDrive.technology}"></td>
+                    <td th:text="${hardDrive.socket}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>
