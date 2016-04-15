@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div th:if="${printers}">
+        <div th:if="${hdds}">
             <table class="table table-condensed">
                 <thead>
                 <tr>
@@ -38,7 +38,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="hardDrive, iterationStatus:${hardDrives}">
+                <tr th:each="hardDrive, iterationStatus:${hdds}">
                     <td th:text="${hardDrive.modelName}"></td>
                     <td th:text="${hardDrive.serialNum}"></td>
                     <td th:text="${hardDrive.partNum}"></td>
