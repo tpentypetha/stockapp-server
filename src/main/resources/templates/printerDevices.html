@@ -49,6 +49,7 @@
                     <td th:text="${printer.networkPrinter}"></td>
                     <td th:text="${printer.multiPurposeMachine}"></td>
                     <td th:text="${printer.technology}"></td>
+                    <td><a th:href="@{/editPrinterDevice(id=${printer.publicid})}" class="btn btn-sm btn-primary">Επεξεργασία</a></td>
                 </tr>
                 </tbody>
             </table>

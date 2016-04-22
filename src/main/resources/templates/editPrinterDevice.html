@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="col-md-4">
+            <p><strong>Στοιχεία συσκευής</strong></p>
+            <form role="form" method="post" action="/editPrinterDevice" name="editPrinterDeviceDto">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                <input type="hidden" name="publicid" th:value="${printer.publicid}"></input>
+                <div class="form-group">
+                    <label for="modelName">Όνομα Μοντέλου:</label>
+                    <input type="text" class="form-control" id="modelName" name="modelName"
+                           th:value="${printer.modelName}" disabled="true"></input>
+                </div>
+                <div class="form-group">
+                    <label for="serialNum">Serial Num:</label>
+                    <input type="text" class="form-control" id="serialNum" name="serialNum" th:value="${printer.serialNum}"></input>
+                </div>
+                <div class="form-group">
+                    <label for="partNum">Part Num:</label>
+                    <input type="text" class="form-control" id="partNum" name="partNum" th:value="${printer.partNum}"></input>
+                </div>
+                <div class="form-group">
+                    <label for="position">Τοποθεσία:</label>
+                    <input type="text" class="form-control" id="position" name="position" th:value="${printer.position}"></input>
+                </div>
+                <label>Κατάσταση:</label>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="STOCKED" required="required"></input>STOCKED</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="DEPLOYED"></input>DEPLOYED</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="REPAIR"></input>REPAIR</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="OBSOLETE"></input>OBSOLETE</label>
+                </div>
+                <hr/>
+                <p><strong>Στοιχεία του Εκτυπωτή</strong></p>
+                <label>Εγχρωμος Εκτυπωτής:</label>
+                <div class="radio">
+                    <label><input type="radio" name="colorPrinter" value="true" required="required"></input>ΝΑΙ</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="colorPrinter" value="false"></input>ΟΧΙ</label>
+                </div>
+                <label>Δικτυακός Εκτυπωτής:</label>
+                <div class="radio">
+                    <label><input type="radio" name="networkPrinter" value="true" required="required"></input>ΝΑΙ</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="networkPrinter" value="false"></input>ΟΧΙ</label>
+                </div>
+                <label>Πολυμηχάνημα:</label>
+                <div class="radio">
+                    <label><input type="radio" name="multiPurposeMachine" value="true" required="required"></input>ΝΑΙ</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="multiPurposeMachine" value="false"></input>ΟΧΙ</label>
+                </div>
+                <label>Τεχνολογία:</label>
+                <div class="radio">
+                    <label><input type="radio" name="technology" value="INKJET" required="required"></input>INKJET</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="technology" value="LASERJET"></input>LASERJET</label>
+                </div>
+                <button type="submit" class="btn btn-sm btn-default">Επεξεργασία</button>
+                <a th:href="@{/deletePrinterDevice(id=${printer.publicid})}" class="btn btn-sm btn-danger">Διαγραφή</a>
+            </form>
+
+        </div>
+    </div>
+</section>
+</body>
+</html>

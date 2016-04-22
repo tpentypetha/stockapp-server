@@ -4,6 +4,7 @@ import gr.mod.mil.stock.dal.model.devices.PrinterDevice;
 import gr.mod.mil.stock.dal.model.devices.builders.PrinterDeviceBuilder;
 import gr.mod.mil.stock.dal.repos.PrinterDeviceRepository;
 import gr.mod.mil.stock.web.dto.PrinterDeviceDTO;
+import gr.mod.mil.stock.web.dto.EditPrinterDeviceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class PrinterDeviceService {
         return repository.save(builder.createPrinterDevice());
     }
 
-    public PrinterDevice edit(PrinterDeviceDTO dto){
+    public PrinterDevice edit(EditPrinterDeviceDTO dto){
         PrinterDevice printer = repository.findByPublicid(dto.getPublicid());
         printer.setSerialNum(dto.getSerialNum());
         printer.setPartNum(dto.getPartNum());
