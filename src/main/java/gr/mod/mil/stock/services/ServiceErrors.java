@@ -11,7 +11,7 @@ public class ServiceErrors {
     public final static ServiceError PRINTER_ALREADY_EXISTS = new ServiceError(0002, "err_printer_already_exists");
     public final static ServiceError CABINET_ALREADY_EXISTS = new ServiceError(0003, "err_CABINET_already_exists");
     public final static ServiceError CABINET_NOT_FOUND = new ServiceError(0004, "err_cabinet_not_found");
-    public final static ServiceError CONSUMABLE_ALREADY_EXISTS = new ServiceError(0005, "err_cabinet_not_found");
+    public final static ServiceError CONSUMABLE_ALREADY_EXISTS = new ServiceError(0005, "err_consumable_already_exists");
     public final static ServiceError CONSUMABLE_NOT_FOUND= new ServiceError(0006, "err_cabinet_not_found");
 
     public static void failWith(ServiceError error) {

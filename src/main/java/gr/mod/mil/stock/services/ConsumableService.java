@@ -23,9 +23,28 @@ public class ConsumableService {
     private Logger log = LoggerFactory.getLogger(ConsumableService.class);
 
     public Consumable add(String code, InkColor color, boolean critical) {
-        Consumable newConsumable = create(code,color,critical);
-        return consumables.save(newConsumable);
+        List<Consumable> found = consumables.findByCode(code);
+        if (found.isEmpty()) {
+            Consumable newConsumable = create(code,color,critical);
+            return consumables.save(newConsumable);
+        }   else {
+            ServiceErrors.failWith(ServiceErrors.CONSUMABLE_ALREADY_EXISTS);
+            return null;
+        }
     }
+
+    /*public Cabinet addCabinet(String name) {
+    List<Cabinet> found = cabinets.findByName(name);
+    if (found.isEmpty()) {
+        Cabinet cabinet = new Cabinet();
+        cabinet.setName(name);
+        cabinet.setPublicid(UUID.randomUUID().toString());
+        return cabinets.save(cabinet);
+    } else {
+        ServiceErrors.failWith(ServiceErrors.CABINET_ALREADY_EXISTS);
+        return null;
+    }
+}*/
 
     public Consumable edit(String publicid, String code, InkColor color, boolean critical) {
         Consumable existing = consumables.findByPublicid(publicid);

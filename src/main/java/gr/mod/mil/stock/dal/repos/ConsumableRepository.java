@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface ConsumableRepository extends CrudRepository<Consumable, Long> {
 
-    @Query("Select C from Consumable C where LOWER(C.code) like CONCAT('%', CONCAT(:code, '%') )")
-    List<Consumable> findByCode(@Param("code") String code);
+    @Query("Select C from Consumable C where LOWER(C.code) like CONCAT('%', CONCAT(:input, '%') ) ")
+    List<Consumable> findByCode(@Param("input") String code);
 
     Consumable findByPublicid(String publicid);
 
