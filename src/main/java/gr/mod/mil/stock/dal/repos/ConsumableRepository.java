@@ -15,6 +15,9 @@ public interface ConsumableRepository extends CrudRepository<Consumable, Long> {
     @Query("Select C from Consumable C where LOWER(C.code) like CONCAT('%', CONCAT(:input, '%') ) ")
     List<Consumable> findByCode(@Param("input") String code);
 
+    @Query("Select C from Consumable C where LOWER(C.code) = TRIM(LOWER(:input))  ")
+    List<Consumable> ConsumableAllreadyExists(@Param("input") String code);
+
     Consumable findByPublicid(String publicid);
 
     @Query("Select C from Cabinet C, Quantity Q where Q MEMBER OF C.quantities AND Q.consumable.code = :code")

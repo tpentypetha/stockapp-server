@@ -26,6 +26,10 @@ public class ConsumableTransaction {
     public int getDepositamount() { return depositamount; }
     public void setDepositamount(int depositamount) { this.depositamount = depositamount; }
 
+    private int delete_amount;
+    public int getDelete_amount(){ return delete_amount;}
+    public void setDelete_amount(int delete_amount){this.delete_amount=delete_amount;}
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date when;
     public Date getWhen() { return when; }

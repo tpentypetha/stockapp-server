@@ -15,16 +15,15 @@ public class CabinetService {
     private CabinetRepository cabinets;
 
     public Cabinet addCabinet(String name) {
-        List<Cabinet> found = cabinets.findByName(name);
-        if (found.isEmpty()) {
-            Cabinet cabinet = new Cabinet();
-            cabinet.setName(name);
-            cabinet.setPublicid(UUID.randomUUID().toString());
-            return cabinets.save(cabinet);
-        } else {
-            ServiceErrors.failWith(ServiceErrors.CABINET_ALREADY_EXISTS);
-            return null;
+        List<Cabinet> found = cabinets.CabinetAllreadyExists(name);
+        if (!found.isEmpty()) {
+            throw new CabinetAlreadyExists(found.get(0));
         }
+        Cabinet cabinet = new Cabinet();
+        cabinet.setName(name);
+        cabinet.setPublicid(UUID.randomUUID().toString());
+        return cabinets.save(cabinet);
+
     }
 
     public void editCabinet(String publicid, String name) {
@@ -34,6 +33,17 @@ public class CabinetService {
             cabinets.save(found);
         } else {
             ServiceErrors.failWith(ServiceErrors.CABINET_NOT_FOUND);
+        }
+    }
+
+    public class CabinetAlreadyExists extends RuntimeException {
+
+        private final Cabinet cabinet;
+        public Cabinet getCabinet() { return cabinet; }
+
+        public CabinetAlreadyExists(Cabinet cabinet) {
+            super(cabinet.getName()+" already exists");
+            this.cabinet = cabinet;
         }
     }
 

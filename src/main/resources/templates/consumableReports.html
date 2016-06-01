@@ -4,7 +4,11 @@
 <body>
 <section layout:fragment="content">
     <div class="container">
+
         <h3>Αναφορά Κινήσεων Αναλωσίμων</h3>
+        <div th:if="${error}" class="alert alert-warning">
+            <strong>Προσοχή!</strong> Συμπληρώστε τις ημερομηνίες!
+        </div>
         <div class="col-md-4">
             <form role="form" action="/consumableReports" method="post" name="consumableReportDto">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
@@ -16,7 +20,41 @@
                     <label for="to">Μέχρι:</label>
                     <input type="date" class="form-control" id="to" name="to"></input>
                 </div>
-                <button type="submit" class="btn btn-success">Αναφορά</button>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="quantity1">Παραλαβές</label>
+                        <select class="form-control col-md-4" id="quantity1" name="quantity1">
+                            <option value="0">> 0</option>
+                            <option value="1">> 1</option>
+                            <option value="2">> 2</option>
+                            <option value="3">> 3</option>
+                            <option value="4">> 4</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="quantity2">Καταναλώσεις</label>
+                        <select class="form-control col-md-4" id="quantity2" name="quantity2">
+                            <option value="0">> 0</option>
+                            <option value="1">> 1</option>
+                            <option value="2">> 2</option>
+                            <option value="3">> 3</option>
+                            <option value="4">> 4</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="quantity3">Απόθεμα</label>
+                        <select class="form-control col-md-4" id="quantity3" name="quantity3">
+                            <option value="5">&lt;= 5</option>
+                            <option value="4">&lt;= 4</option>
+                            <option value="3">&lt;= 3</option>
+                            <option value="2">&lt;= 2</option>
+                            <option value="1">&lt;= 1</option>
+                        </select>
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-success pull-right" style="margin-top: 10px">Αναφορά</button>
             </form>
         </div>
         <br/>
@@ -29,6 +67,7 @@
                         <th>Καταναλώσεις</th>
                         <th>Διαθέσιμο Απόθεμα</th>
                         <th>Παραγγελία</th>
+                        <th>Απόθεμα</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +80,11 @@
                             category=${row.consumable.category},
                             currentSupply=${row.currentSupply},
                             title=${row.consumable.orderableTitle})}" class="btn btn-sm btn-primary-outline">Παραγγελία</a></td>
+                        <td><a th:href="@{/showAvailable(id=${row.consumable.publicid})}" class="btn btn-info btn-sm" role="button">Μετάβαση στα ράφια</a></td>
+
+
                     </tr>
+
                 </tbody>
             </table>
         </div>

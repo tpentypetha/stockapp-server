@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3>Έλεχγος αναλωσίμων πολλαπλών ραφιών</h3>
+        <div class="row">
+            <div class="col-xs-6 col-sm-4" th:each="cabinet: ${cabinets}">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Ράφι:
+                            <strong>
+                                <span th:text="${cabinet.name}"></span>
+                            </strong>
+                            <div class="badge pull-right">
+                                Σύνολο Αναλωσίμων:
+                                <span>10</span>
+                            </div>
+                        </h3>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Κωδικός αναλωσίμου</th>
+                                <th>Ποσότητα</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="quantity: ${cabinet.quantities}">
+                                <td th:text="${quantity.consumable.code}"></td>
+                                <td th:text="${quantity.amount}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base"
+        xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h3 th:text="${cabinet.name}"></h3>
+        <h4 th:text="${consumable.code}"></h4>
+        <div class="row">
+            <p class="col-md-2 h4">Διαθέσιμη ποσότητα</p>
+            <h4 th:text=" ${quantityamount}" class="col-md-2">1</h4>
+        </div>
+
+        <p> Επιλέξτε το πλήθος του αναλωσίμου που θα μεταφερθεί σε άλλο ράφι</p>
+
+        <form role="form" action="/transferQ" method="post" name="transferQuantityDTO">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+            <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>
+            <input type="hidden" name="consumableid" th:value="${consumable.publicid}"></input>
+            <input type="hidden" name="totalamount" th:value="${quantityamount}"></input>
+            <input type="hidden" name="quantityid" th:value="${quantityid}"></input>
+        <div class="row">
+            <div class="col-md-4">
+                <select  class="form-control col-md-4" id="quantity" name="quantity">
+                    <option th:each="n : ${#numbers.sequence(1,quantityamount)}" th:value="${n}" th:text="${n}"/>
+                </select>
+
+            </div>
+            <div class="col-md-4">
+                <select class="form-control col-md-4" id="toCabinet" name="toCabinet">
+                    <option th:each="cabinet : ${cabinets}"
+                            th:value="${cabinet.publicid}"
+                            th:text="${cabinet.name}"></option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Καταχώρηση</button>
+            </div>
+
+        </div>
+
+
+    </form>
+    </div>
+</section>
+
+</body>
+
+</html>

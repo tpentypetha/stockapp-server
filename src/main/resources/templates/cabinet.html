@@ -7,10 +7,29 @@
     <div class="container">
         <h3 th:text="${cabinet.name}"></h3>
         <div class="row">
-            <div class="btn-group pull-left">
-                <a th:href="@{/addCabinetConsumable(cabinetid=${cabinet.publicid})}" class="btn btn-primary" role="button">Προσθήκη Αναλωσίμων</a>
-                <a th:href="@{/removeCabinet(id=${cabinet.publicid})}" class="btn btn-danger" role="button">Διαγραφή Ραφιού</a>
+            <div th:if="${error}" class="alert alert-warning">
+                <strong>Προσοχή!</strong> Δεν μπορείται να διαγράψετε ράφι το οποίο έχει αναλώσιμα!
             </div>
+            <div class="btn-group pull-left">
+                <div class="col-md-4">
+                    <a th:href="@{/addCabinetConsumable(cabinetid=${cabinet.publicid})}" class="btn btn-primary" role="button">Προσθήκη Αναλωσίμων</a>
+                </div>
+                <div class="col-md-3">
+                    <a th:href="@{/removeCabinet(id=${cabinet.publicid})}"  class="btn btn-danger" role="button">Διαγραφή Ραφιού</a>
+                </div>
+                <div class="col-md-5">
+                    <form role="form" action="addToPrintCheckConsumable" name="printCabinetDTO" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                        <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>
+                        <button type="submit" class="btn btn-info" style="margin-left: 1px">Αποθήκευση στην εκτύπωση</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
         </div>
         <table class="table">
             <thead>
@@ -41,9 +60,25 @@
                             <input type="hidden" name="quantityid" th:value="${quantity.publicid}"></input>
                             <input type="hidden" name="amount" th:value="${quantity.amount - 1}"></input>
                             <button type="submit" class="btn btn-danger pull-left" style="margin-left: 3px">
+
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                             </button>
                         </form>
+                        <form role="form" action="tranferQuantity" name="editQuantityDto" method="get">
+
+                            <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>
+                            <input type="hidden" name="consumableid" th:value="${quantity.consumable.publicid}"></input>
+                            <input type="hidden" name="quantityamount" th:value="${quantity.amount}"></input>
+                            <input type="hidden" name="quantityid" th:value="${quantity.publicid}"></input>
+                            <button type="submit" class="btn btn-warning pull-left" style="margin-left: 50px">
+
+                                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+                            </button>
+                        </form>
+                        <a th:href="@{/removeConsumableFromCabinet(cabinetid=${cabinet.publicid},quantityid=${quantity.publicid})}" style="margin-left: 100px" class="btn btn-danger pull-left" role="button">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </a>
+
                     </div>
                 </td>
             </tr>

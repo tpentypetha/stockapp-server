@@ -14,6 +14,12 @@ public interface CabinetRepository extends CrudRepository<Cabinet, Long> {
     @Query("SELECT C from Cabinet C where LOWER(C.name) like CONCAT('%', CONCAT(:input, '%') ) ")
     List<Cabinet> findByName(@Param("input") String name);
 
+    @Query("SELECT C from Cabinet C where LOWER(C.name) =  TRIM(LOWER(:input)) ")
+    Cabinet getCabinetByname(@Param("input") String name);
+
+    @Query("Select C from Cabinet C where LOWER(C.name) = TRIM(LOWER(:input))  ")
+    List<Cabinet> CabinetAllreadyExists(@Param("input") String name);
+
     Cabinet findByPublicid(String publicid);
 
 }

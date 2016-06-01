@@ -20,8 +20,10 @@ public class CabinetViewController {
     LogService logger;
 
     @RequestMapping(value = "/cabinet", method = RequestMethod.GET)
-    public String render(@RequestParam("id") String cabinetid, Model model){
+    public String render(@RequestParam("id") String cabinetid, Model model,
+                         @RequestParam(value = "error", required = false) boolean error){
         model.addAttribute("cabinet", repo.findByPublicid(cabinetid));
+        model.addAttribute("error", error);
         logger.log("visited Cabinet page");
         return "cabinet";
     }

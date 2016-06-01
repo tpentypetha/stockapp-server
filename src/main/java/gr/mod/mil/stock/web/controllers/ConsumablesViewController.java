@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ConsumablesViewController {
@@ -21,8 +22,10 @@ public class ConsumablesViewController {
 
     @RequestMapping(value = "/consumables", method = RequestMethod.GET)
     public String consumables(@ModelAttribute("searchConsumableDto") SearchConsumableDTO data, Model model) {
+
         String input = data.getQuery() == null ? "" : data.getQuery().toLowerCase();
         model.addAttribute("consumables", service.searchByCode(input));
+
         logger.log("visited Consumables page");
         return "consumables";
     }

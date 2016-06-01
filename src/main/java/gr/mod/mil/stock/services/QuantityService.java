@@ -28,6 +28,8 @@ public class QuantityService {
     @Autowired
     ConsumableTransactionsService transactions;
 
+
+
     public Quantity getQuantity(String quantityid){
         return quantities.findByPublicid(quantityid);
     }
@@ -70,6 +72,14 @@ public class QuantityService {
 
         quantity.setAmount(amount);
         return quantities.save(quantity);
+    }
+
+    public void RemoveQuantity(String quantityid){
+        Quantity quantity = quantities.findByPublicid(quantityid);
+        quantities.delete(quantity.getId());
+        transactions.record(quantity.getConsumable(),TransactionIndicator.DELETE,quantity.getAmount());
+
+
     }
 
     private boolean consumableExists(Cabinet cabinet, Consumable consumable) {

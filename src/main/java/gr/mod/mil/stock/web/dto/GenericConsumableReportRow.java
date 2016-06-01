@@ -41,5 +41,9 @@ public class GenericConsumableReportRow {
         this.currentSupply = currentSupply;
     }
 
-    public boolean isLow() { return Integer.parseInt(this.currentSupply) < 3; }
+    public boolean isLow() {
+        try {
+            return Integer.parseInt(this.currentSupply) < 3;
+        } catch(Exception e){return false; }
+    }
 }

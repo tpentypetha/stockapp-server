@@ -6,6 +6,7 @@ import gr.mod.mil.stock.services.SecurityService;
 import gr.mod.mil.stock.web.dto.GenericConsumableReportRow;
 import gr.mod.mil.stock.web.dto.GenericDateRangeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -29,10 +32,14 @@ public class ConsumableReportViewController {
     ConsumableTransactionsService service;
 
     @RequestMapping("/consumableReports")
-    public String view(@AuthenticationPrincipal UserDetails user){
+    public String view(@AuthenticationPrincipal UserDetails user,
+                       @RequestParam(value = "error", required = false) boolean error,
+                       Model model){
+        model.addAttribute("error", error);
         if (! security.isAuthorizedAsAdmin(user)){
             return "redirect:/?notAdmin=true";
         }
+
         logger.log("visited Consumable Reports page");
         return "consumableReports";
     }
@@ -41,11 +48,19 @@ public class ConsumableReportViewController {
     public String doReport(
             @AuthenticationPrincipal UserDetails user,
             @ModelAttribute("consumableReportDto")GenericDateRangeDTO data,
+            @RequestParam(value = "error", required = false) boolean error,
             Model model){
+        model.addAttribute("error", error);
         if (! security.isAuthorizedAsAdmin(user)){
             return "redirect:/?notAdmin=true";
         }
-        List<GenericConsumableReportRow> rows = service.getConcetratedReport(data.getFromDate(), data.getToDate());
+
+        if(data.getFrom()=="" || data.getTo()==""){
+            return "redirect:consumableReports?error=true";
+        }
+
+        List<GenericConsumableReportRow> rows = service.getConcetratedReport(data.getFromDate(), data.getToDate(),
+                data.getQuantity1(),data.getQuantity2(),data.getQuantity3());
         model.addAttribute("rows", rows);
         return "consumableReports";
     }

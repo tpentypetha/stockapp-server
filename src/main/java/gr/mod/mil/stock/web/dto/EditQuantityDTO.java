@@ -7,6 +7,7 @@ public class EditQuantityDTO {
     private int amount;
 
 
+
     public String getQuantityid() {
         return quantityid;
     }

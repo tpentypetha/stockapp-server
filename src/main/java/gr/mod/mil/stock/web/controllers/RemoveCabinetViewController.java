@@ -33,11 +33,24 @@ public class RemoveCabinetViewController {
     }
 
     @RequestMapping(value = "/removeCabinet", method = RequestMethod.POST)
-    public String doRemove(@ModelAttribute("removeCabinetDto")RemoveCabinetDTO data) {
+    public String doRemove(@ModelAttribute("removeCabinetDto")RemoveCabinetDTO data,
+                           @RequestParam("cabinetid") String cabinetid,
+                           @RequestParam(value = "error", required = false) boolean error,
+                           Model model) {
         Cabinet cabinet = repository.findByPublicid(data.getCabinetid());
-        service.removeCabinet(data.getCabinetid());
-        logger.log("removed the cabinet: " + cabinet.getName());
-        return "redirect:cabinets";
+        model.addAttribute("error", error);
+        if(cabinet.getQuantities().size()>0){
+            model.addAttribute("cabinet", repository.findByPublicid(cabinetid));
+            return "redirect:cabinet?id="+cabinetid+"&error=true";
+        }
+        else{
+            service.removeCabinet(data.getCabinetid());
+            logger.log("removed the cabinet: " + cabinet.getName());
+            return "redirect:cabinets";
+        }
+
+
+
     }
 
 }

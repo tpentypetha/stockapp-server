@@ -1,6 +1,8 @@
 package gr.mod.mil.stock.dal.repos;
 
+import gr.mod.mil.stock.dal.model.stock.Consumable;
 import gr.mod.mil.stock.dal.model.stock.Quantity;
+import gr.mod.mil.stock.web.controllers.ConsumablesViewController;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -23,6 +25,9 @@ public interface QuantityRepository extends CrudRepository<Quantity, Long> {
             "GROUP BY Q.consumable.id")
     List<Object[]> getAllCurrentSupplies();
 
-
+   // @Query( "DELETE " +
+     //       "FROM Quantity Q "+
+    //        "WHERE Q.ID=:id ")
+   // Quantity DeleteCurrentConsumableFromCabinet(@Param("id") long id);
 
 }

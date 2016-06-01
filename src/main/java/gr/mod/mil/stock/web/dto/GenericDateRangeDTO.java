@@ -9,6 +9,33 @@ public class GenericDateRangeDTO {
 
     private String from;
     private String to;
+    private String quantity1;
+    private String quantity2;
+    private String quantity3;
+
+    public String getQuantity1() {
+        return quantity1;
+    }
+
+    public void setQuantity1(String quantity1) {
+        this.quantity1 = quantity1;
+    }
+
+    public String getQuantity2() {
+        return quantity2;
+    }
+
+    public void setQuantity2(String quantity2) {
+        this.quantity2 = quantity2;
+    }
+
+    public String getQuantity3() {
+        return quantity3;
+    }
+
+    public void setQuantity3(String quantity3) {
+        this.quantity3 = quantity3;
+    }
 
     public String getFrom() {
         return from;
