@@ -3,8 +3,47 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
 <body>
 <section layout:fragment="content">
+    <!-- Alert if operation completed successfully or failed -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function getUrlVars(){
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++){
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        function afterLoad(){
+            var queryVariables = getUrlVars();
+            if (typeof queryVariables.message !== 'undefined')
+                alert(decodeURIComponent(queryVariables.message));
+        };
+
+        $(document).ready(function() {
+            afterLoad();
+        });
+
+        /*]]>*/
+    </script>
     <div class="container">
-        <h3>Έλεχγος αναλωσίμων πολλαπλών ραφιών</h3>
+        <table th:width="700px">
+            <tbody>
+            <tr>
+                <td th:align="left"><h3>Έλεχγος αναλωσίμων πολλαπλών ραφιών</h3></td>
+                <td th:align="right">
+                    <form role="form" action="clearPrintables" name="printCabinetDTO" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <input type="hidden" name="redirect" th:value="${#httpServletRequest.requestURL}+'?'+${#httpServletRequest.getQueryString()}"/>
+                        <button type="submit" class="btn btn-danger" style="margin-left: 1px">Εκκαθάριση</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
         <div class="row">
             <div class="col-xs-6 col-sm-4" th:each="cabinet: ${cabinets}">
                 <div class="panel panel-primary">
@@ -15,7 +54,20 @@
                             </strong>
                             <div class="badge pull-right">
                                 Σύνολο Αναλωσίμων:
-                                <span>10</span>
+                                <span>
+                                    <script th:inline="javascript">
+                                        /*<![CDATA[*/
+                                        var quantities = [[${cabinet.quantities}]];
+                                        var amount = 0;
+                                        for(var i=0; i<quantities.length; i++){
+                                            var quantity = quantities[i];
+//                                            console.log(quantity);
+                                            amount = amount + quantity.amount;
+                                        }
+                                        document.write(amount);
+                                        /*]]>*/
+                                    </script>
+                                </span>
                             </div>
                         </h3>
                     </div>

@@ -3,6 +3,31 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
 <body>
 <section layout:fragment="content">
+    <!-- Alert if operation completed successfully or failed -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function getUrlVars(){
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++){
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        function afterLoad(){
+            var queryVariables = getUrlVars();
+            if (typeof queryVariables.message !== 'undefined')
+                alert(decodeURIComponent(queryVariables.message));
+        };
+
+        $(document).ready(function() {
+            afterLoad();
+        });
+
+        /*]]>*/
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-md-2">
@@ -35,6 +60,16 @@
             <tr th:each="cabinet,iterationStatus: ${cabinets}">
                 <td th:text="${cabinet.name}"></td>
                 <td><a th:href="@{/cabinet(id=${cabinet.publicid})}">Περισσότερα</a></td>
+                <td>
+                    <div class="col-md-5">
+                        <form role="form" action="addToPrintCheckConsumable" name="printCabinetDTO" method="post">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"/>
+                            <input type="hidden" name="redirect" th:value="${#httpServletRequest.requestURL}+'?'+${#httpServletRequest.getQueryString()}"/>
+                            <button type="submit" class="btn btn-info" style="margin-left: 1px">Αποθήκευση στην εκτύπωση</button>
+                        </form>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>

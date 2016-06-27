@@ -3,7 +3,7 @@ package gr.mod.mil.stock.web.controllers;
 import gr.mod.mil.stock.dal.repos.CabinetRepository;
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.QuantityService;
-import gr.mod.mil.stock.web.dto.EditQuantityDTO;
+import gr.mod.mil.stock.web.dto.quantity.EditQuantityDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
 public class RemoveQuantityFromCabinet {

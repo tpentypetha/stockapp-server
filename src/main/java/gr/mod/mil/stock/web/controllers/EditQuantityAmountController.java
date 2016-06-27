@@ -2,7 +2,7 @@ package gr.mod.mil.stock.web.controllers;
 
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.QuantityService;
-import gr.mod.mil.stock.web.dto.EditQuantityDTO;
+import gr.mod.mil.stock.web.dto.quantity.EditQuantityDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

@@ -11,9 +11,9 @@ public class Cabinet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
-    Long id;
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    long id;
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
     String name;
     public String getName() { return name;}
@@ -28,4 +28,18 @@ public class Cabinet {
     public List<Quantity> getQuantities() {return quantities;}
     public void setQuantities(List<Quantity> quantities) {this.quantities = quantities;}
 
+
+    @Override
+    public boolean equals(Object o){
+        if( !(o instanceof Cabinet))
+            return false;
+
+        Cabinet another = (Cabinet) o;
+        return this.getId() == another.getId();
+    }
+
+    @Override
+    public int hashCode(){
+        return 0;
+    }
 }

@@ -3,8 +3,7 @@ package gr.mod.mil.stock.services;
 import gr.mod.mil.stock.dal.model.devices.PersonalComputer;
 import gr.mod.mil.stock.dal.model.devices.builders.PersonalComputerBuilder;
 import gr.mod.mil.stock.dal.repos.PersonalComputerRepository;
-import gr.mod.mil.stock.web.dto.AddPcDTO;
-import gr.mod.mil.stock.web.dto.EditPcDTO;
+import gr.mod.mil.stock.web.dto.computer.EditPcDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

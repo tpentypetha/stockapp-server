@@ -3,8 +3,7 @@ package gr.mod.mil.stock.services;
 import gr.mod.mil.stock.dal.model.devices.PrinterDevice;
 import gr.mod.mil.stock.dal.model.devices.builders.PrinterDeviceBuilder;
 import gr.mod.mil.stock.dal.repos.PrinterDeviceRepository;
-import gr.mod.mil.stock.web.dto.PrinterDeviceDTO;
-import gr.mod.mil.stock.web.dto.EditPrinterDeviceDTO;
+import gr.mod.mil.stock.web.dto.printer.EditPrinterDeviceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

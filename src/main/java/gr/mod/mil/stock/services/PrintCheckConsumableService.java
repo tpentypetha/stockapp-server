@@ -12,20 +12,22 @@ import org.springframework.stereotype.Service;
 public class PrintCheckConsumableService {
 
 
-
     @Autowired
     private CabinetRepository cabinets;
+    public CabinetRepository getCabinets() {return cabinets;}
 
     @Autowired
     private PrintCheckConsumablePage page;
 
 
-    public void addToPrint(String cabinetid){
-
-        Cabinet cabinet=cabinets.findByPublicid(cabinetid);
+    public void addToPrint(String cabinetID){
+        Cabinet cabinet=cabinets.findByPublicid(cabinetID);
         page.addPrintable(cabinet);
+    }
 
-
+    public boolean isAdded(String cabinetID){
+        Cabinet cabinet=cabinets.findByPublicid(cabinetID);
+        return page.getPrintables().contains(cabinet);
     }
 
 }

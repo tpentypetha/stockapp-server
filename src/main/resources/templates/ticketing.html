@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+<div class="container">
+    <h3>Ticketing</h3>
+    <div class="row">
+        <form class="form" action="addticket" name="ticketingDTO" method="post" >
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <div class="form-group nopadding col-md-1">
+                <label class="sr-only" for="phone" >Τηλέφωνο</label>
+                <input name="phone"  required="true" type="text" autofocus="autofocus" onfocusout="autofill" class="form-control" id="phone" placeholder="Τηλέφωνο"></input>
+            </div>
+            <div class="form-group nopadding col-md-2">
+                <label class="sr-only" for="name">Όνομα</label>
+                <input name="name" type="text" class="form-control" id="name" placeholder="Όνομα"></input>
+            </div>
+            <div class="form-group nopadding col-md-1">
+                <label class="sr-only" for="office">Γραφείο</label>
+                <input name="office" type="text" class="form-control" id="office" placeholder="Γραφείο"></input>
+            </div>
+            <div class="form-group nopadding col-md-2">
+                <label class="sr-only" for="problem">Πρόβλημα</label>
+                <select name="problem" class="form-control" id="problem">
+                    <option>Reset password</option>
+                    <option>Network</option>
+                    <option>Printing</option>
+                    <option>Toner</option>
+                    <option>Hardware repair</option>
+                    <option>Software/Installation</option>
+                    <option>Μετακόμιση</option>
+                    <option>Λογαριασμοί-Παρουσιασεις</option>
+                    <option>Δνση Ενημέρωσης</option>
+                    <option>Λοιπά</option>
+                </select>
+            </div>
+            <div class="form-group nopadding col-md-4">
+                <label class="sr-only" for="notes">Παρατηρήσεις</label>
+                <textarea name="notes" type="textarea" class="form-control customtext" id="notes" placeholder="Παρατηρήσεις"></textarea>
+            </div>
+            <div class="form-group col-md-2 nopadding">
+                <button type="submit"   class="btn btn-warning">Σε αναμονή</button>
+            </div>
+        </form>
+    </div>
+    <div class="row" style="padding-top: 12px">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Τηλέφωνο</th>
+                        <th>Όνομα</th>
+                        <th>Γράφειο</th>
+                        <th>Πρόβλημα</th>
+                        <th>Παρατηρήσεις</th>
+                        <th>Ημερομηνία</th>
+                        <th>Ενέργεια</th>
+                    </tr>
+                    </thead>
+                    <tbody >
+                    <tr th:each="tickets,iterationStatus: ${pending_tickets}">
+                        <td th:text="${tickets.phone}"></td>
+                        <td th:text="${tickets.name}"></td>
+                        <td th:text="${tickets.office}"></td>
+                        <td th:text="${tickets.problem}"></td>
+                        <td th:text="${tickets.notes}"></td>
+
+                        <td th:text="${tickets.datein}"></td>
+
+
+                        <td>
+
+
+                                <ul class="nav nav-tabs">
+                                    <li>
+                                        <a class="dropdown-toggle btn-success" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                        Επιλύθηκε<span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu" >
+                                                <li th:each="user,iterationStatus: ${users}">
+                                                    <form class="form" action="setticketSolved" name="ticketingDTO" method="post" >
+                                                    <input type="hidden" name="user" th:value="${user}"/>
+                                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                                        <input type="hidden" name="ticketid" th:value="${tickets.id}"/>
+                                                    <button class="btn btn-default col-md-12" type="submit" th:text="${user}"></button>
+                                                    </form>
+                                                </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                        </td>
+                   </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+</body>
+</html>

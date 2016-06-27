@@ -5,6 +5,11 @@
 <section layout:fragment="content">
     <div class="container">
         <h3>Αναφορά διαθέσιμων αποθεμάτων</h3>
+        <form role="form" action="/printtotalSupplies" method="post"  name="data">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+
+            <button type="submit" class="btn btn-success pull-right" style="margin-top: 10px;margin-right:10px" >Εκτύπωση</button>
+        </form>
         <table class="table table-condensed">
             <thead>
             <tr>

@@ -45,6 +45,7 @@
                     <div class="col-md-4">
                         <label for="quantity3">Απόθεμα</label>
                         <select class="form-control col-md-4" id="quantity3" name="quantity3">
+                            <option value="30">&lt;= 30</option>
                             <option value="5">&lt;= 5</option>
                             <option value="4">&lt;= 4</option>
                             <option value="3">&lt;= 3</option>
@@ -55,7 +56,9 @@
 
                 </div>
                 <button type="submit" class="btn btn-success pull-right" style="margin-top: 10px">Αναφορά</button>
+
             </form>
+
         </div>
         <br/>
         <div th:if="${rows}">
@@ -87,6 +90,17 @@
 
                 </tbody>
             </table>
+            <form role="form" action="/printRep" method="post"  name="data">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                <input type="hidden" name="quantity1" th:value="${data.quantity1}"/>
+                <input type="hidden" name="quantity2" th:value="${data.quantity2}"/>
+                <input type="hidden" name="quantity3" th:value="${data.quantity3}"/>
+                <input type="hidden" name="from" th:value="${data.from}"/>
+                <input type="hidden" name="to" th:value="${data.to}"/>
+
+
+                <button type="submit" class="btn btn-success pull-right" style="margin-top: 10px;margin-right:10px" >Εκτύπωση</button>
+            </form>
         </div>
     </div>
 </section>

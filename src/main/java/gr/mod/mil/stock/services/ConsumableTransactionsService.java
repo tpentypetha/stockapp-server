@@ -1,19 +1,24 @@
 package gr.mod.mil.stock.services;
 
+import be.quodlibet.boxable.BaseTable;
+import be.quodlibet.boxable.datatable.DataTable;
 import gr.mod.mil.stock.dal.model.stock.Consumable;
 import gr.mod.mil.stock.dal.model.stock.ConsumableTransaction;
 import gr.mod.mil.stock.dal.model.stock.TransactionIndicator;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;
 import gr.mod.mil.stock.dal.repos.ConsumableTransactionsRepository;
 import gr.mod.mil.stock.dal.repos.QuantityRepository;
-import gr.mod.mil.stock.web.dto.GenericConsumableReportRow;
+import gr.mod.mil.stock.web.dto.consumable.GenericConsumableReportRow;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.*;
 
 @Service
 public class ConsumableTransactionsService {
@@ -100,4 +105,64 @@ public class ConsumableTransactionsService {
         return list;
     }
 
+
+
+   public byte[] printReport(List<GenericConsumableReportRow> rows) {
+        List<List> data = new ArrayList();
+        // data.add(new ArrayList<>(
+        //        Arrays.asList("Column One", "Column Two", "Column Three", "Column Four")));
+        // for (int i = 0; i < rows.size(); i++) {
+        //   data.add(new ArrayList<>(
+        //           Arrays.asList(rows.get(i).getConsumable().getCode() + rows.get(i).getDeposits() +
+        //                  rows.get(i).getWithdrawals() + rows.get(i).getCurrentSupply())));
+        // }
+        data.add(new ArrayList<>(Arrays.asList("Consumable", "Current Supply")));
+        for (int i = 0; i < rows.size(); i++) {
+
+
+            data.add(new ArrayList<>(Arrays.asList(rows.get(i).getConsumable().getCode(),
+                     rows.get(i).getCurrentSupply())));
+        }
+        PDDocument doc = new PDDocument();
+        PDPage page = new PDPage();
+        page.setMediaBox(new PDRectangle(PDRectangle.A4.getHeight(),PDRectangle.A4.getWidth()));
+        doc.addPage(page);
+        float margin = 10;
+        float tableWidth = page.getMediaBox().getWidth() - (5 * margin);
+        float yStartNewPage = page.getMediaBox().getHeight() - (5 * margin);
+        float yStart = yStartNewPage;
+        float bottomMargin = 20;
+        BaseTable baseTable = null;
+        try {
+            baseTable = new BaseTable(yStart, yStartNewPage,bottomMargin, tableWidth, margin, doc, page, true, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DataTable dataTable = null;
+        try {
+            dataTable = new DataTable(baseTable, page);
+        } catch (IOException e) {
+
+        }
+        try {
+            dataTable.addListToTable(data, true);
+            baseTable.draw();
+        } catch (IOException e) {
+
+        }
+
+
+        OutputStream out = new ByteArrayOutputStream();
+        try {
+            doc.save(out);
+            doc.close();
+        } catch (IOException e) {
+
+        }
+
+        return ((ByteArrayOutputStream)out).toByteArray();
+
+
+
+    }
 }
