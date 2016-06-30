@@ -8,7 +8,14 @@
 			<strong>Προσοχή!</strong>
 			Δεν μπορείτε να προσθέσετε επιπλέον κωδικούς. <span th:text="${remainder}"></span> κωδικοί διαθέσιμοι.
 		</div>
-	    <div class="row container-barcode text-center">
+		<script>
+			$(function() {
+				$( "#sortable" ).sortable();
+				$( "#sortable" ).disableSelection();
+			});
+		</script>
+	<div class="row container-barcode text-center">
+		<div id="sortable" class="ui-sortable">
 			<div class="col-xs-4 barcode" th:each="barcode: ${barcodes}">
 				<div>
 					<p class="h6">ΤΠΕΝΤ - ΝΑ ΜΗΝ ΑΦΑΙΡΕΙΤΑΙ</p>
@@ -18,7 +25,195 @@
 				</div>
 				<div th:text="${barcode.printableText}"></div>
 			</div>
+
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+			<div class="col-xs-4 barcode barcode-empty">
+				<div>
+					<p class="h6"> ΑΔΕΙΟ ΑΥΤΟΚΟΛΛΗΤΟ</p>
+				</div>
+				<div>
+					<img class="img-height"></img>
+				</div>
+			</div>
+
+
 		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 </section>
 </body>

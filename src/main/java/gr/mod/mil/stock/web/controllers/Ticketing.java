@@ -1,6 +1,7 @@
 package gr.mod.mil.stock.web.controllers;
 
 
+import gr.mod.mil.stock.dal.model.stock.Contacts;
 import gr.mod.mil.stock.dal.model.stock.Tickets;
 import gr.mod.mil.stock.dal.model.system.TicketFormat;
 import gr.mod.mil.stock.dal.repos.LoginUserRepository;
@@ -10,13 +11,12 @@ import gr.mod.mil.stock.web.dto.TicketingDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Controller
 public class Ticketing {
@@ -88,5 +88,17 @@ public class Ticketing {
 
         return "redirect:ticketing";
     }
+
+    @RequestMapping("/autofillticket/{phone}")
+    public @ResponseBody Contacts set_autofillticket(@PathVariable String phone) {
+
+
+        String s="fsdfsd";
+        System.out.println("autofillticket method  " +phone );
+
+
+        return service.getContact(phone);
+    }
+
 
 }

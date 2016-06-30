@@ -23,6 +23,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/**").permitAll()
                     .antMatchers("/barcode").permitAll()
                     .antMatchers("/register").permitAll()
+                    .antMatchers("/ticketing").permitAll()
+                .antMatchers("/addticket").permitAll()
+                .antMatchers("/setticketSolved").permitAll()
+                .antMatchers("//autofillticket/{phone}").permitAll()
+
+
                     .anyRequest().authenticated().and()
                 .formLogin().loginPage("/login").permitAll().and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).invalidateHttpSession(true);

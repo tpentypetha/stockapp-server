@@ -40,9 +40,16 @@ public class AddTicketService {
         contact.setOffice(data.getOffice());
         contact.setName(data.getName());
 
+        if(contact.getName()==null)contact.setName("");
+            if(contact.getOffice()==null) contact.setOffice("");
+
+
 
         Contacts oldcontact= contactsrepo.findbyId(data.getPhone());
+
         if(oldcontact!=null) {
+            if(oldcontact.getName()==null)oldcontact.setName("");
+            if(oldcontact.getOffice()==null) oldcontact.setOffice("");
             if (!oldcontact.getOffice().equals(contact.getOffice()) || !oldcontact.getName().equals(contact.getName())) {
                 contactsrepo.delete(oldcontact);
                 contactsrepo.save(contact);
@@ -66,6 +73,19 @@ public class AddTicketService {
         t.setUser(user);
         repo.save(t);
 
+
+
+
+    }
+
+
+    public Contacts getContact(String phone) {
+
+
+        Contacts con=contactsrepo.findbyId(phone);
+
+
+        return con;
 
 
 

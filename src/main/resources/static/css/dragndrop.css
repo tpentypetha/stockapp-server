@@ -1,0 +1,21 @@
+<style>
+table.sorting-table {cursor: ns-resize; box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);}
+table tr.sorting-row td {background-color: #8b8;}
+table td.sorter {background-color: #f80; width: 10px; cursor: ns-resize;}
+.sort-handler {float: right; background-color: #f80; width: 14px; height: 14px; margin: 2px 0 0 6px; cursor: ns-resize;}
+.table-dragable{
+    border: 2px dashed #73ad73;
+}
+.table>tfoot>tr>td {
+    padding-top: 40px !important;
+}
+
+
+table.sorting-table tbody tr:not(.sorting-row) td {opacity: 0.2;}
+table.sorting-table tbody tr:not(.sorting-row) {border: 2px dashed rgba(137, 148, 137, 0.10);}
+
+/* some styling for table1 */
+table#table1 tr.sorting-row td {background-color: #ccc;}
+table#table1.sorting-table {cursor: ns-resize; box-shadow: none; outline: 1px solid #333;}
+table#table1.sorting-table tbody tr:not(.sorting-row) td {opacity: 1; color: #bbb; text-shadow: 0 1px 0 rgba(255, 255, 255, 1);}
+</style>
