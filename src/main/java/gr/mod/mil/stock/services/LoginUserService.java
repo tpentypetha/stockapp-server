@@ -16,6 +16,8 @@ import java.util.Collection;
 @Service
 public class LoginUserService {
 
+
+    
     @Autowired
     LoginUserRepository repository;
 
