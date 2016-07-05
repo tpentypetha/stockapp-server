@@ -24,6 +24,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/barcode").permitAll()
                     .antMatchers("/register").permitAll()
                     .antMatchers("/ticketing").permitAll()
+                    .antMatchers("/solvedtickets").permitAll()
+
+                .antMatchers("/ticketsreport").permitAll()
                 .antMatchers("/addticket").permitAll()
                 .antMatchers("/setticketSolved").permitAll()
                 .antMatchers("//autofillticket/{phone}").permitAll()

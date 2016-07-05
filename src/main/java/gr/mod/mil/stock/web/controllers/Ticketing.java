@@ -48,6 +48,7 @@ public class Ticketing {
             as.setName(oldtickets.get(i).getName());
             as.setNotes(oldtickets.get(i).getNotes());
             as.setOffice(oldtickets.get(i).getOffice());
+            as.setProblem(oldtickets.get(i).getProblem());
             String d= DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(oldtickets.get(i).getDatein());
             as.setDatein(d);
             tickets.add(as);

@@ -6,7 +6,7 @@
 .barcode{
     border: 1px #000 dashed;
     width: 306px;
-    height: 190px;
+    height: 185px;
     padding-top: 10px;
 }
 .barcode-empty{

@@ -57,7 +57,7 @@
                 <label class="sr-only" for="name">Όνομα</label>
                 <input name="name" type="text" class="form-control" id="name" placeholder="Όνομα"></input>
             </div>
-            <div class="form-group nopadding col-md-1">
+            <div class="form-group nopadding col-md-2">
                 <label class="sr-only" for="office">Γραφείο</label>
                 <input name="office" type="text" class="form-control" id="office" placeholder="Γραφείο"></input>
             </div>
@@ -80,15 +80,15 @@
                 <label class="sr-only" for="notes">Παρατηρήσεις</label>
                 <textarea name="notes" type="textarea" class="form-control customtext" id="notes" placeholder="Παρατηρήσεις"></textarea>
             </div>
-            <div class="form-group col-md-2 nopadding">
-                <button type="submit"   class="btn btn-warning">Σε αναμονή</button>
+            <div class="form-group col-md-1 nopadding">
+                <button type="submit"   class="btn btn-sm btn-warning">Σε αναμονή</button>
             </div>
         </form>
     </div>
     <div class="row" style="padding-top: 12px">
         <div class="panel panel-default">
             <div class="panel-body">
-                <table class="table table-striped" id="table-ticket">
+                <table class="table table-hover" id="table-ticket">
                     <thead>
                     <tr>
                         <th></th>
@@ -97,6 +97,7 @@
                         <th>Γράφειο</th>
                         <th>Πρόβλημα</th>
                         <th>Παρατηρήσεις</th>
+                        <th>Επεξεργασία</th>
                         <th>Ημερομηνία</th>
                         <th>Ενέργεια</th>
                     </tr>
@@ -109,6 +110,7 @@
                         <td th:text="${tickets.office}"></td>
                         <td th:text="${tickets.problem}"></td>
                         <td th:text="${tickets.notes}"></td>
+                        <td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>
                         <td th:text="${tickets.datein}"></td>
                         <td>
                             <ul class="nav">
@@ -130,6 +132,34 @@
                             </ul>
                         </td>
                    </tr>
+                    <tr class="table-dragable">
+                        <td class="sorter"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span></td>
+                        <td>463</td>
+                        <td>test</td>
+                        <td>900</td>
+                        <td>test Reset password</td>
+                        <form class="form-inline">
+                        <td>
+                            <div class="form-group">
+                                <label class="sr-only" for="notes">Παρατηρήσεις</label>
+                                <textarea name="notes" type="textarea" class="form-control customtext" id="notes" placeholder="Παρατηρήσεις">test reset email lgeorgaras@mod.mil.gr</textarea>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                        </td>
+                        </form>
+                        <td>30/6/2016 12:09 μμ</td>
+                        <td>
+                            <ul class="nav">
+                                <li>
+                                    <a class="dropdown-toggle btn-success text-center" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                        Επιλύθηκε <span class="caret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
                     </tbody>
                     <tfoot>
                     <tr class="text-center">
@@ -154,6 +184,135 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#phonelist">Κατάλογος Γραφείων</button>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#last10tickets">Τελευταία 10 tickets</button>
+    </div>
+    <!-- Modal gia ton katalogo twn grafeion -->
+    <div class="modal fade" id="phonelist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel">Κατάλογος γραφείων</h3>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Τηλέφωνο</th>
+                                <th>Όνομα</th>
+                                <th>Γράφειο</th>
+                                <th>Επεξεργασία</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>123</td>
+                                <td>Γεωργάρας</td>
+                                <td>411Ν</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>123</td>
+                                <td>Γεωργάρας</td>
+                                <td>411Ν</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>123</td>
+                                <td>Γεωργάρας</td>
+                                <td>411Ν</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <form class="form-inline">
+                                    <td>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="editphone">Τηλέφωνο</label>
+                                            <textarea type="text" class="form-control" id="editphone" placeholder="123">123</textarea>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="editname">Όνομα</label>
+                                            <textarea type="text" class="form-control" id="editname" placeholder="Γεωργάρας">Γεωργάρας</textarea>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="editoffice">Γραφείο</label>
+                                            <textarea type="text" class="form-control" id="editoffice" placeholder="411Ν">411Ν</textarea>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                                    </td>
+                                </form>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edo teleionei to modal gia ton katalogo -->
+
+
+    <!-- Modal gia ta teleutaia 10 tickets -->
+    <div class="modal fade" id="last10tickets" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel">Τελευταία 10 tickets</h3>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Τηλέφωνο</th>
+                                <th>Όνομα</th>
+                                <th>Γράφειο</th>
+                                <th>Πρόβλημα</th>
+                                <th>Παρατηρήσεις</th>
+                                <th>Ημερομηνία</th>
+                                <th>Επιλύθηκε από</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tickets,iterationStatus: ${pending_tickets}">
+                                <td th:text="${tickets.phone}"></td>
+                                <td th:text="${tickets.name}"></td>
+                                <td th:text="${tickets.office}"></td>
+                                <td th:text="${tickets.problem}"></td>
+                                <td th:text="${tickets.notes}"></td>
+                                <td th:text="${tickets.datein}"></td>
+                                <td>
+                                    <a class="btn btn-info text-center" href="#" role="button" aria-haspopup="true" aria-expanded="false">lgeorgaras</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edo teleionei to modal gia ta teleutaia 10 tickets -->
+
 </div>
 </section>
 </body>
