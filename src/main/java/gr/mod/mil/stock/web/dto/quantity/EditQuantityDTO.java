@@ -5,8 +5,15 @@ public class EditQuantityDTO {
     private String cabinetid;
     private String quantityid;
     private int amount;
+    private long deptid;
 
+    public long getDeptid() {
+        return deptid;
+    }
 
+    public void setDeptid(long deptid) {
+        this.deptid = deptid;
+    }
 
     public String getQuantityid() {
         return quantityid;

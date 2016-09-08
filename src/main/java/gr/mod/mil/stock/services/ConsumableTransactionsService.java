@@ -32,22 +32,26 @@ public class ConsumableTransactionsService {
     @Autowired
     QuantityRepository quantities;
 
-    public ConsumableTransaction record(Consumable consumable, TransactionIndicator indicator, int amount) {
+    public ConsumableTransaction record(Consumable consumable, TransactionIndicator indicator, int amount,long deptid) {
         ConsumableTransaction transaction = new ConsumableTransaction();
         transaction.setConsumable(consumable);
         if (indicator.equals(TransactionIndicator.DEPOSIT)){
             transaction.setDepositamount(amount);
             transaction.setWithdrawamount(0);
             transaction.setDelete_amount(0);
+            transaction.setDeptid(1);
+
         } else if(indicator.equals(TransactionIndicator.WITHDRAWAL)) {
             transaction.setWithdrawamount(amount);
             transaction.setDepositamount(0);
             transaction.setDelete_amount(0);
+            transaction.setDeptid(deptid);
         }
         else{
             transaction.setDelete_amount(amount);
             transaction.setDepositamount(0);
             transaction.setWithdrawamount(0);
+            transaction.setDeptid(1);
 
         }
         transaction.setWhen(new Date());

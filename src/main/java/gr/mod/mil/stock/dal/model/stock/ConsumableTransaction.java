@@ -30,6 +30,17 @@ public class ConsumableTransaction {
     public int getDelete_amount(){ return delete_amount;}
     public void setDelete_amount(int delete_amount){this.delete_amount=delete_amount;}
 
+
+    long deptid;
+
+    public long getDeptid() {
+        return deptid;
+    }
+
+    public void setDeptid(long deptid) {
+        this.deptid = deptid;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date when;
     public Date getWhen() { return when; }

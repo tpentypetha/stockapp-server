@@ -27,4 +27,13 @@ public interface PersonalComputerRepository extends DeviceRepository<PersonalCom
     List<PersonalComputer> getComputerByDomainAndStatus(@Param("domain") PersonalComputerDomain domain, @Param("status") DeviceStatus status);
 
 
+    @Query( "SELECT P " +
+            "FROM PersonalComputer P " +
+            "WHERE P.belongs_to = :belongs_to ")
+    List<PersonalComputer> getComputers_thatBelongsTo(@Param("belongs_to") long id);
+
+
+
+
+
 }

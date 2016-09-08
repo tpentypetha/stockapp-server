@@ -23,6 +23,16 @@ public class PersonalComputer extends Device implements BarcodePrintable{
     public int getRam() { return ram; }
     public void setRam(int ram) { this.ram = ram; }
 
+    private long belongs_to;
+
+    public long getBelongs_to() {
+        return belongs_to;
+    }
+
+    public void setBelongs_to(long belongs_to) {
+        this.belongs_to = belongs_to;
+    }
+
     private int memory; // in GB
     public int getMemory() { return memory; }
     public void setMemory(int memory) { this.memory = memory; }

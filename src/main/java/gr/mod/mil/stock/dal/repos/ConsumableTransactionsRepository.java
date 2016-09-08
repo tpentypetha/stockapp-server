@@ -17,4 +17,10 @@ public interface ConsumableTransactionsRepository extends CrudRepository<Consuma
             "WHERE T.when BETWEEN :from AND :to  " +
             "GROUP BY T.consumable.id")
     List<Object[]> getTransactions(@Param("from") Date from, @Param("to") Date to);
+
+
+
 }
+
+
+

@@ -51,7 +51,7 @@ public class QuantityService {
 
         cabinet.getQuantities().add(saved);
         cabinets.save(cabinet);
-        transactions.record(consumable, TransactionIndicator.DEPOSIT, initialAmount);
+        transactions.record(consumable, TransactionIndicator.DEPOSIT, initialAmount,0);
         return saved;
     }
 
@@ -61,14 +61,15 @@ public class QuantityService {
         return quantities.save(quantity);
     }
 
-    public Quantity submitCount(String quantityid, int amount){
+    public Quantity submitCount(String quantityid, int amount,long deptid){
         Quantity quantity = quantities.findByPublicid(quantityid);
 
         int previousAmount = quantity.getAmount();
         int diff = previousAmount - amount;
         TransactionIndicator indicator = diff < 0 ? TransactionIndicator.DEPOSIT : TransactionIndicator.WITHDRAWAL;
         int transaction_amount = Math.abs(diff);
-        transactions.record(quantity.getConsumable(), indicator, transaction_amount);
+
+        transactions.record(quantity.getConsumable(), indicator, transaction_amount,deptid);
 
         quantity.setAmount(amount);
         return quantities.save(quantity);
@@ -77,7 +78,7 @@ public class QuantityService {
     public void RemoveQuantity(String quantityid){
         Quantity quantity = quantities.findByPublicid(quantityid);
         quantities.delete(quantity.getId());
-        transactions.record(quantity.getConsumable(),TransactionIndicator.DELETE,quantity.getAmount());
+        transactions.record(quantity.getConsumable(),TransactionIndicator.DELETE,quantity.getAmount(),0);
 
 
     }

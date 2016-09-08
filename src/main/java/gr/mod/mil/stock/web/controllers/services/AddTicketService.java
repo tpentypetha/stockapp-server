@@ -92,4 +92,13 @@ public class AddTicketService {
     }
 
 
+    public void saveEdit(String id, String notes) {
+
+
+        Tickets t=repo.findbyId(Long.valueOf(id));
+        t.setNotes(notes);
+        repo.save(t);
+
+
+    }
 }

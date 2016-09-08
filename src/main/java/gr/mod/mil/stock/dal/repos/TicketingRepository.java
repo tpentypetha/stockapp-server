@@ -45,5 +45,12 @@ public interface TicketingRepository extends CrudRepository<Tickets, Long> {
     List<Tickets> getTicketsReportwithoutall(@Param("from") Date from, @Param("to") Date to);
 
 
+    @Query( "SELECT  T " +
+            "FROM Tickets T " +
+            "WHERE T.status = 'Επιλύθηκε' AND rownum <=10"+
+            "ORDER BY T.datein DESC "
+            )
+    List<Tickets> getlast10Solved();
+
 
 }

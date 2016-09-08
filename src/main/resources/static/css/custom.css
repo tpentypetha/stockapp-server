@@ -98,3 +98,13 @@ ul.target {
 .table>tbody>tr>td {
     vertical-align: middle;
 }
+
+.editable{
+    text-decoration: underline;
+    color: #337ab7;
+    cursor: pointer;
+    background-color: #d9edf7;
+}
+.table-editable{
+    cursor: default;
+}

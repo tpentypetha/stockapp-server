@@ -20,12 +20,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/api/**").permitAll()
+                .antMatchers("/cdBriefReport").permitAll()
+                .antMatchers("/briefreport").permitAll()
+                .antMatchers("/consumableDepartmentsReport").permitAll()
+                .antMatchers("/cdExtendReport").permitAll()
+                .antMatchers("/extendreport").permitAll()
+                .antMatchers("/cdDepReport").permitAll()
+                .antMatchers("/depreport").permitAll()
+
+
+                .antMatchers("/personel").permitAll()
+                .antMatchers("/xreostika").permitAll()
+                .antMatchers("/editxreostika").permitAll()
+                .antMatchers("/removepcfromuser").permitAll()
+
+
+
+
+                .antMatchers("/api/**").permitAll()
                     .antMatchers("/barcode").permitAll()
                     .antMatchers("/register").permitAll()
                     .antMatchers("/ticketing").permitAll()
                     .antMatchers("/solvedtickets").permitAll()
+                .antMatchers("/10solvedtickets").permitAll()
 
+                    .antMatchers("/editticket/{id}/{notes}").permitAll()
+                .antMatchers("/get10solved").permitAll()
                 .antMatchers("/ticketsreport").permitAll()
                 .antMatchers("/addticket").permitAll()
                 .antMatchers("/setticketSolved").permitAll()

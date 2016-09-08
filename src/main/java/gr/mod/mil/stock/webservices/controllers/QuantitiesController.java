@@ -25,7 +25,7 @@ public class QuantitiesController {
 
     @RequestMapping(value = "/api/quantities/{quantityid}", method = RequestMethod.PUT)
     public Quantity submitCount(@PathVariable("quantityid") String quantityid, @RequestBody CountRequestDTO data){
-        return service.submitCount(quantityid, data.getAmount());
+        return service.submitCount(quantityid, data.getAmount(),0);
     }
 
     @RequestMapping(value = "/api/quantities/{quantityid}", method = RequestMethod.DELETE)

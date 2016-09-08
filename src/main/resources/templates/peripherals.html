@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <!--  -->
+
+        <table class="table">
+            <thead>
+            <tr>
+                <td><strong>Τύπος Περιφερειακού</strong></td>
+                <td><strong>PUBLICID</strong></td>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="peripheral,iterationStatus: ${peripherals}">
+                <td th:text="${peripheral.type}"></td>
+                <td th:text="${peripheral.publicid}"></td>
+                <td>
+                    <form role="form" action="peripheralToBarcodePage" method="post" name="publicid">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                        <input type="hidden" th:name="publicid" th:value="${peripheral.publicid}"></input>
+                        <div class="input-group col-md-12">
+                            <button type="submit" class="btn btn-info btn-lg">Barcode</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

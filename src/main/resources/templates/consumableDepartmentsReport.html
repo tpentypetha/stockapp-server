@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <!-- Alert if operation completed successfully or failed -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function set_selected(){
+
+            document.getElementById("inputid").value=document.getElementById("deptselect").value;
+
+        };
+
+
+        /*]]>*/
+    </script>
+    <div class="container">
+        <h3>Αναφορά αναλωσίμων ανά τμήμα</h3>
+        <div th:if="${error}" class="alert alert-warning">
+            <strong>Προσοχή!</strong> Συμπληρώστε τις ημερομηνίες!
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <form role="form" action="briefreport" name="depreportDTO" method="post"  target="_blank">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Συνοπτική αναφορά</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group col-md-6">
+                                <label for="from1">Από:</label>
+                                <input type="date" class="form-control" id="from1" name="from"></input>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="to1">Μέχρι:</label>
+                                <input type="date" class="form-control" id="to1" name="to"></input>
+                            </div>
+                            <button class="btn btn-success col-md-12" type="submit">Αναφορά</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-5">
+                <form role="form" action="extendreport" name="depreportDTO" method="post" target="_blank">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+
+                    <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Αναλυτική αναφορά</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group col-md-6">
+                            <label for="from">Από:</label>
+                            <input type="date" class="form-control" id="from" name="from"></input>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="to">Μέχρι:</label>
+                            <input type="date" class="form-control" id="to" name="to"></input>
+                        </div>
+                        <button class="btn btn-success pull-right col-md-12" type="submit" >Αναφορά</button>
+                    </div>
+                </div>
+                    </form>
+            </div>
+            <div class="col-md-5">
+                <form role="form" action="depreport" name="depreportDTO" method="post"  target="_blank">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+
+                    <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Αναλυτική αναφορά τμήματος</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group col-md-6">
+                            <label for="from">Από:</label>
+                            <input type="date" class="form-control" id="from" name="from"></input>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="to">Μέχρι:</label>
+                            <input type="date" class="form-control" id="to" name="to"></input>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <select id="deptselect" name="deptid"  class="selectpicker" data-size="10" data-live-search="true" tabindex="1">
+                                <option th:each="dept : ${depts}"
+                                        th:value="${dept.id}"
+                                        th:utext="${dept.name}"></option>
+
+                            </select>
+                        </div>
+                        <button class="btn btn-success col-md-12" type="submit">Αναφορά</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="modal fade" id="sortReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title" id="myModalLabel">Συνοπτική αναφορά χρήσης αναλωσίμων</h3>
+                            <h4>22/05/2016 - 30/05/2016</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Τμήμα</th>
+                                    <th>Σύνολο Αναλωσίμων</th>
+                                    <th>Κόστος Αναλωσίμων(€)</th>
+                                    <th>Εκτιμώμενες εκτυπωμένες σελίδες</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>TPENT</td>
+                                        <td>20</td>
+                                        <td>400</td>
+                                        <td>50000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΤΥΠ</td>
+                                        <td>15</td>
+                                        <td>300</td>
+                                        <td>2000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΤΥΠΟ</td>
+                                        <td>5</td>
+                                        <td>100</td>
+                                        <td>12000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Εκτύπωση</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="extendReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title" id="myModalLabel">Αναλυτική αναφορά χρήσης αναλωσίμων</h3>
+                            <h4>22/05/2016 - 30/05/2016</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-hover">
+                                <h4>ΕΘΥΜΟΤΥΠΙΑ</h4>
+                                <thead>
+                                    <tr>
+                                        <th>Κωδικός αναλωσίμου</th>
+                                        <th>Ποσότητα</th>
+                                        <th>Εκτιμώμενες εκτυπωμένες σελίδες</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>H436XC</td>
+                                        <td>25</td>
+                                        <td>25000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>H436XC</td>
+                                        <td>25</td>
+                                        <td>25000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>H436XC</td>
+                                        <td>25</td>
+                                        <td>25000</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Σύνολο</strong></td>
+                                        <td><strong>50</strong></td>
+                                        <td><strong>75000</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-hover">
+                                <h4>ΕΘΥΜΟΤΥΠΙΑ</h4>
+                                <thead>
+                                <tr>
+                                    <th>Κωδικός αναλωσίμου</th>
+                                    <th>Ποσότητα</th>
+                                    <th>Εκτιμώμενες εκτυπωμένες σελίδες</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>H436XC</td>
+                                    <td>25</td>
+                                    <td>25000</td>
+                                </tr>
+                                <tr>
+                                    <td>H436XC</td>
+                                    <td>25</td>
+                                    <td>25000</td>
+                                </tr>
+                                <tr>
+                                    <td>H436XC</td>
+                                    <td>25</td>
+                                    <td>25000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Σύνολο</strong></td>
+                                    <td><strong>50</strong></td>
+                                    <td><strong>75000</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-hover">
+                                <h4>ΕΘΥΜΟΤΥΠΙΑ</h4>
+                                <thead>
+                                <tr>
+                                    <th>Κωδικός αναλωσίμου</th>
+                                    <th>Ποσότητα</th>
+                                    <th>Εκτιμώμενες εκτυπωμένες σελίδες</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>H436XC</td>
+                                    <td>25</td>
+                                    <td>25000</td>
+                                </tr>
+                                <tr>
+                                    <td>H436XC</td>
+                                    <td>25</td>
+                                    <td>25000</td>
+                                </tr>
+                                <tr>
+                                    <td>H436XC</td>
+                                    <td>25</td>
+                                    <td>25000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Σύνολο</strong></td>
+                                    <td><strong>50</strong></td>
+                                    <td><strong>75000</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Εκτύπωση</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="departmentReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title" id="myModalLabel">Αναλυτική αναφορά χρήσης αναλωσίμων</h3>
+                            <h4>22/05/2016 - 30/05/2016</h4>
+                            <h4>ΤΜΗΜΑ: <strong>ΕΘΥΜΟΤΥΠΙΑ</strong></h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Κωδικός αναλωσίμου</th>
+                                        <th>Ποσότητα</th>
+                                        <th>Εκτυμώμενες σελίδες εκτύπωσης</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>H436XC</td>
+                                        <td>25</td>
+                                        <td>2000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>H436XC</td>
+                                        <td>25</td>
+                                        <td>2000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>H436XC</td>
+                                        <td>25</td>
+                                        <td>2000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Εκτύπωση</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

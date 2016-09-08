@@ -23,6 +23,16 @@ public class Display extends Device implements BarcodePrintable {
     public boolean getHdmi() { return hdmi; }
     public void setHdmi(boolean hdmi) { this.hdmi = hdmi; }
 
+    private long belongs_to;
+
+    public long getBelongs_to() {
+        return belongs_to;
+    }
+
+    public void setBelongs_to(long belongs_to) {
+        this.belongs_to = belongs_to;
+    }
+
     public Display(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, boolean hdmi, int inches, boolean vga, boolean dvi) {
         super(status, position, modelName, serialNum, partNum, publicid);
         this.hdmi = hdmi;

@@ -1,6 +1,7 @@
 package gr.mod.mil.stock.web.controllers.cabinets;
 
 import gr.mod.mil.stock.dal.repos.CabinetRepository;
+import gr.mod.mil.stock.dal.repos.DepartmentsRepository;
 import gr.mod.mil.stock.services.CabinetService;
 import gr.mod.mil.stock.services.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,16 @@ public class CabinetViewController {
     CabinetRepository repo;
 
     @Autowired
+    DepartmentsRepository deptrepo;
+
+    @Autowired
     LogService logger;
 
     @RequestMapping(value = "/cabinet", method = RequestMethod.GET)
     public String render(@RequestParam("id") String cabinetid, Model model,
                          @RequestParam(value = "error", required = false) boolean error){
         model.addAttribute("cabinet", repo.findByPublicid(cabinetid));
+        model.addAttribute("depts",deptrepo.findAll());
         model.addAttribute("error", error);
         logger.log("visited Cabinet page");
         return "cabinet";

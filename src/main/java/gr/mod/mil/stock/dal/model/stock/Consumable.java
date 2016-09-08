@@ -31,6 +31,26 @@ public class Consumable implements Orderable, BarcodePrintable {
     public boolean getCritical() { return critical; }
     public void setCritical(boolean critical) { this.critical = critical; }
 
+    float price;
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public long getNumberofpages() {
+        return numberofpages;
+    }
+
+    public void setNumberofpages(long numberofpages) {
+        this.numberofpages = numberofpages;
+    }
+
+    long numberofpages;
+
     @Override
     public boolean equals(Object other) {
         return other instanceof Consumable && ((Consumable)other).getId() == this.getId();

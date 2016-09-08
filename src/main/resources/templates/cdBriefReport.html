@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+<div class="col-md-8">
+    <h3 >Συνοπτική αναφορά χρήσης αναλωσίμων</h3>
+
+
+    <div class="row">
+        <div class="col-xs-6 col-sm-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Ημερομηνία:
+                        <strong>
+                            <span th:text="${data.from} + ' ΕΩΣ '+ ${data.to} "></span>
+                        </strong>
+
+                    </h3>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Τμήμα</th>
+                        <th>Σύνολο Αναλωσίμων</th>
+                        <th>Κόστος Αναλωσίμων(€)</th>
+                        <th>Εκτιμώμενες εκτυπωμένες σελίδες</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="rep,iterationStatus: ${report}">
+                        <td th:text="${rep.name}"></td>
+                        <td th:text="${rep.withdrawals}"></td>
+                        <td th:text="${rep.price}"></td>
+                        <td th:text="${rep.pages}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+</section>
+</body>
+</html>
