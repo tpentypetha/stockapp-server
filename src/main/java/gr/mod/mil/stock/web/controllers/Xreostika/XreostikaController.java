@@ -95,13 +95,7 @@ public class XreostikaController {
     }
 
 
-    @RequestMapping(value = "/cabinets", method = RequestMethod.GET)
-    public String index(@RequestParam(value = "name", required = false) String name, Model model) {
-        String input = name == null ? "" : name.toLowerCase();
-        model.addAttribute("cabinets", repo.findByName(input));
-        logger.log("visited Cabinets page");
-        return "cabinets";
-    }
+   
 
 
 
