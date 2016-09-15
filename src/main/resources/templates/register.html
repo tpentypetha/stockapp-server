@@ -3,6 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
 <body>
 <section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Register";
+    </script>
     <div class="container">
         <div th:if="${param.error}">
             <div class="alert alert-warning">

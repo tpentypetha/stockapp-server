@@ -1,4 +1,4 @@
-package gr.mod.mil.stock.web.controllers;
+package gr.mod.mil.stock.web.controllers.other;
 
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.QuantityService;
@@ -20,7 +20,7 @@ public class EditQuantityAmountController {
 
     @RequestMapping(value = "/editQuantity", method = RequestMethod.POST)
     public String processIncrease(@ModelAttribute("editQuantityDto") EditQuantityDTO data){
-        service.submitCount(data.getQuantityid(), data.getAmount());
+        service.submitCount(data.getQuantityid(), data.getAmount(),data.getDept_desc());
         logger.log("changed the quanity ammount of quantity with public id: " + data.getQuantityid() + " to " + data.getAmount());
         return "redirect:cabinet?id="+data.getCabinetid();
     }

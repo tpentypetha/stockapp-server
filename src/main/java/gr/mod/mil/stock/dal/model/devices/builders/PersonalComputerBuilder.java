@@ -4,6 +4,7 @@ import gr.mod.mil.stock.dal.model.devices.*;
 
 public class PersonalComputerBuilder {
 
+    // kaloume tin class DevicePublicidGenerator gia tin dimiourgia tou publicid tou device
     private final DevicePublicidGenerator generator = new DevicePublicidGenerator();
 
     private DeviceStatus status;
@@ -12,12 +13,15 @@ public class PersonalComputerBuilder {
     private String serialNum;
     private String partNum;
     private String publicid;
+    private long belongs_to;
     private PersonalComputerDomain domain;
     private CaseType caseType;
     private int ram;
     private int memory;
     private String cpu;
     private String cpuSocket;
+
+
 
     public PersonalComputerBuilder setStatus(DeviceStatus status) {
         this.status = status;
@@ -27,6 +31,14 @@ public class PersonalComputerBuilder {
     public PersonalComputerBuilder setPosition(String position) {
         this.position = position;
         return this;
+    }
+
+    public long getBelongs_to() {
+        return belongs_to;
+    }
+
+    public void setBelongs_to(long belongs_to) {
+        this.belongs_to = belongs_to;
     }
 
     public PersonalComputerBuilder setModelName(String modelName) {
@@ -79,8 +91,11 @@ public class PersonalComputerBuilder {
         return this;
     }
 
+
+
+    // methodos gia tin dimiourgia tou object PersonalComputer
     public PersonalComputer createPersonalComputer() {
-        PersonalComputer created = new PersonalComputer(status, position, modelName, serialNum, partNum, publicid, domain, caseType, ram, memory, cpu, cpuSocket);
+        PersonalComputer created = new PersonalComputer(status, position, modelName, serialNum, partNum, publicid, domain, caseType, ram, memory, cpu, cpuSocket,belongs_to);
         generator.generate(created);
         return created;
     }

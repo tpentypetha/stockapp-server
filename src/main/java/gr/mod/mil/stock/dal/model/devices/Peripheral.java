@@ -1,42 +1,59 @@
 package gr.mod.mil.stock.dal.model.devices;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import gr.mod.mil.stock.dal.model.barcode.BarcodePrintable;
+
+import javax.persistence.*;
 
 @Entity
-public class Peripheral extends Device {
+public class Peripheral implements BarcodePrintable {
 
-    @Enumerated(EnumType.STRING)
-    private PeripheralConnectivity connectivity;
-    public PeripheralConnectivity getConnectivity() { return connectivity; }
-    public void setConnectivity(PeripheralConnectivity connectivity) {
-        this.connectivity = connectivity;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) @JsonIgnore
+    long id;
 
-    private boolean mouse;
-    public boolean isMouse() {
-        return mouse;
-    }
-    public void setMouse(boolean mouse) {
-        this.mouse = mouse;
-    }
+    String type;
 
-    private boolean keyboard;
-    public boolean isKeyboard() {
-        return keyboard;
-    }
-    public void setKeyboard(boolean keyboard) {
-        this.keyboard = keyboard;
+    String publicid;
+
+    private long belongs_to;
+
+    public long getBelongs_to() {
+        return belongs_to;
     }
 
-    public Peripheral(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, PeripheralConnectivity connectivity, boolean mouse, boolean keyboard) {
-        super(status, position, modelName, serialNum, partNum, publicid);
-        this.connectivity = connectivity;
-        this.mouse = mouse;
-        this.keyboard = keyboard;
+    public void setBelongs_to(long belongs_to) {
+        this.belongs_to = belongs_to;
     }
 
-    public Peripheral() {
+    public long getId() {
+        return id;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPublicid() {
+        return publicid;
+    }
+
+    public void setPublicid(String publicid) {
+        this.publicid = publicid;
+    }
+
+    @Override
+    public String getBarcodeText(){ return publicid.replace('-',' ').trim().substring(0,9);}
+
+    @Override
+    public String getPrintableText(){ return type.replaceAll("\\s","").substring(0,5); }
+
 }

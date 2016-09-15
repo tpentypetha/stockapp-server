@@ -1,4 +1,4 @@
-package gr.mod.mil.stock.web.controllers;
+package gr.mod.mil.stock.web.controllers.other;
 
 import gr.mod.mil.stock.dal.repos.CabinetRepository;
 import gr.mod.mil.stock.dal.repos.ConsumableRepository;

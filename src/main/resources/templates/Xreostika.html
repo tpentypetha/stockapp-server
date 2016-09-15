@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Xρεωστικά";
+    </script>
+    <div class="container">
+        <div class="row">
+            <h2>Χρεωστικά</h2>
+            <h4 th:text="${rank} + ' ' + ${surname}+ ' ' + ${name}">gfgffdgfd</h4>
+        </div>
+
+        <br/>
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+
+                        <p>Υπολογιστές</p>
+
+
+                        <div id="custom-search-input">
+                            <form role="form" action="personel" method="get" >
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+
+                                <input type="hidden" name="id" th:value="${id}"></input>
+                                <div class="input-group col-md-3">
+                                    <input type="text" name="query" class="form-control input-sm" placeholder="Εύρεση" />
+                                    <span class="input-group-btn">
+                                     <button class="btn btn-info btn-sm" type="submit">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+
+                            <th>Μοντέλο</th>
+                            <th>Serial Number</th>
+                            <th>Part Number</th>
+                            <th>Domain</th>
+                            <th>Κατάσταση</th>
+                            <th>Τοποθεσία</th>
+                            <th>Τύπος PC</th>
+                            <th>RAM (MB)</th>
+                            <th>HDD (GB)</th>
+                            <th>CPU</th>
+                            <th>Socket</th>
+                            <th>Αφαίρεση</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="pc, iterationStatus:${pcs}">
+                            <td th:text="${pc.modelName}"></td>
+                            <td th:text="${pc.serialNum}"></td>
+                            <td th:text="${pc.partNum}"></td>
+                            <td th:text="${pc.domain}"></td>
+                            <td th:text="${pc.status}"></td>
+                            <td th:text="${pc.position}"></td>
+                            <td th:text="${pc.caseType}"></td>
+                            <td th:text="${pc.ram}"></td>
+                            <td th:text="${pc.memory}"></td>
+                            <td th:text="${pc.cpu}"></td>
+                            <td th:text="${pc.cpuSocket}"></td>
+
+                            <td>
+                            <form role="form" action="removepcfromuser" method="post">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+
+                                <input type="hidden" name="pcid" th:value="${pc.publicid}"></input>
+                                <input type="hidden" name="id" th:value="${id}"></input>
+                                <button type="submit" class="btn btn-warning pull-left" style="margin-left: 50px">
+
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                            </form>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <p>Οθόνες</p>
+
+
+                        <div id="custom-search-input2">
+                            <form role="form" action="personel" method="get" name="searchPersonelDto">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                                <div class="input-group col-md-3">
+                                    <input type="text" name="query" class="form-control input-sm" placeholder="Εύρεση" />
+                                    <span class="input-group-btn">
+                                     <button class="btn btn-info btn-sm" type="submit">
+                                         <i class="glyphicon glyphicon-search"></i>
+                                     </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Μοντέλο</th>
+                            <th>Serial Number</th>
+                            <th>Part Number</th>
+                            <th>Κατάσταση</th>
+                            <th>Τοποθεσία</th>
+                            <th>Διαγώνιος</th>
+                            <th>VGA</th>
+                            <th>DVI</th>
+                            <th>HDMI</th>
+                            <th>Αφαίρεση</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="display, iterationStatus:${displays}">
+                            <td th:text="${display.modelName}"></td>
+                            <td th:text="${display.serialNum}"></td>
+                            <td th:text="${display.partNum}"></td>
+                            <td th:text="${display.status}"></td>
+                            <td th:text="${display.position}"></td>
+                            <td th:text="${display.inches}"></td>
+                            <td th:text="${display.vga}"></td>
+                            <td th:text="${display.dvi}"></td>
+                            <td th:text="${display.hdmi}"></td>
+                            <td>
+                                <form role="form" action="removedisplayfromuser" method="post">
+
+                                    <input type="hidden" name="displayid" th:value="${display.publicid}"></input>
+
+                                    <button type="submit" class="btn btn-warning pull-left" style="margin-left: 50px">
+
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <p>Εκτυπωτές</p>
+
+
+                        <div id="custom-search-input3">
+                            <form role="form" action="personel" method="get" name="searchPersonelDto">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                                <div class="input-group col-md-3">
+                                    <input type="text" name="query" class="form-control input-sm" placeholder="Εύρεση" />
+                                    <span class="input-group-btn">
+                                     <button class="btn btn-info btn-sm" type="submit">
+                                         <i class="glyphicon glyphicon-search"></i>
+                                     </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Μοντέλο</th>
+                            <th>Serial Number</th>
+                            <th>Part Number</th>
+                            <th>Κατάσταση</th>
+                            <th>Τοποθεσία</th>
+                            <th>Έγχρωμος</th>
+                            <th>Δικτυακός</th>
+                            <th>Πολυμηχάνημα</th>
+                            <th>Τεχνολογία</th>
+                            <th>Αφαίρεση</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="printer, iterationStatus:${printers}">
+                            <td th:text="${printer.modelName}"></td>
+                            <td th:text="${printer.serialNum}"></td>
+                            <td th:text="${printer.partNum}"></td>
+                            <td th:text="${printer.status}"></td>
+                            <td th:text="${printer.position}"></td>
+                            <td th:text="${printer.colorPrinter}"></td>
+                            <td th:text="${printer.networkPrinter}"></td>
+                            <td th:text="${printer.multiPurposeMachine}"></td>
+                            <td th:text="${printer.technology}"></td>
+                            <td>
+                                <form role="form" action="removeprinterfromuser" method="post">
+
+                                    <input type="hidden" name="printerid" th:value="${printer.publicid}"></input>
+
+                                    <button type="submit" class="btn btn-warning pull-left" style="margin-left: 50px">
+
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <p>KVMs</p>
+
+
+                        <div id="custom-search-input4">
+                            <form role="form" action="personel" method="get" name="searchPersonelDto">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                                <div class="input-group col-md-3">
+                                    <input type="text" name="query" class="form-control input-sm" placeholder="Εύρεση" />
+                                    <span class="input-group-btn">
+                                      <button class="btn btn-info btn-sm" type="submit">
+                                         <i class="glyphicon glyphicon-search"></i>
+                                     </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td><strong>Όνομα Μοντέλου</strong></td>
+                            <td><strong>PUBLICID</strong></td>
+                            <td><strong>Status</strong></td>
+                            <td><strong>Number of devices</strong></td>
+                            <th>Αφαίρεση</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="kvm,iterationStatus: ${kvms}">
+                            <td th:text="${kvm.model_name}"></td>
+                            <td th:text="${kvm.PUBLICID}"></td>
+                            <td th:text="${kvm.status}"></td>
+                            <td th:text="${kvm.NUM_DEVICES_SUPPORTED}"></td>
+                            <td>
+                                <form role="form" action="removekvmfromuser" method="post">
+
+                                    <input type="hidden" name="kvmid" th:value="${kvm.PUBLICID}"></input>
+
+                                    <button type="submit" class="btn btn-warning pull-left" style="margin-left: 50px">
+
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <p>Περιφερεικά</p>
+
+
+                        <div id="custom-search-input5">
+                            <form role="form" action="personel" method="get" name="searchPersonelDto">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                                <div class="input-group col-md-3">
+                                    <input type="text" name="query" class="form-control input-sm" placeholder="Εύρεση" />
+                                    <span class="input-group-btn">
+                                     <button class="btn btn-info btn-sm" type="submit">
+                                         <i class="glyphicon glyphicon-search"></i>
+                                     </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td><strong>Τύπος Περιφερειακού</strong></td>
+                            <td><strong>PUBLICID</strong></td>
+                            <th>Αφαίρεση</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="peripheral,iterationStatus: ${peripherals}">
+                            <td th:text="${peripheral.type}"></td>
+                            <td th:text="${peripheral.publicid}"></td>
+                            <td>
+                                <form role="form" action="removeperipheralfromuser" method="post">
+
+                                    <input type="hidden" name="peripheralid" th:value="${peripheral.id}"></input>
+
+                                    <button type="submit" class="btn btn-warning pull-left" style="margin-left: 50px">
+
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</section>
+</body>
+</html>

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base"
         xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
 <body>
 <section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Transfer Consumables";
+    </script>
     <div class="container">
         <h3 th:text="${cabinet.name}"></h3>
         <h4 th:text="${consumable.code}"></h4>

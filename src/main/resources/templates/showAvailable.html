@@ -3,6 +3,9 @@
       xmlns:th="http://www.thymeleaf.org">
 <body>
 <section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Show Available Consumables";
+    </script>
     <div class="container">
         <h3 th:text="${consumable.code}"></h3>
         <table class="table">

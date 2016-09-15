@@ -1,6 +1,7 @@
-package gr.mod.mil.stock.web.controllers;
+package gr.mod.mil.stock.web.controllers.other;
 
 import gr.mod.mil.stock.dal.repos.LogRepository;
+import gr.mod.mil.stock.dal.repos.LoginUserRepository;
 import gr.mod.mil.stock.services.LogService;
 import gr.mod.mil.stock.services.SecurityService;
 import gr.mod.mil.stock.web.dto.GenericDateRangeDTO;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class LogViewController {
+public class UserActionsViewController {
 
     @Autowired
     LogService logger;
@@ -22,23 +23,26 @@ public class LogViewController {
     SecurityService security;
 
     @Autowired
+    LoginUserRepository users;
+
+    @Autowired
     LogRepository logs;
 
-    @RequestMapping("/log")
+    @RequestMapping("/loginuserReports")
     public String view(
             Model model,
-            @AuthenticationPrincipal UserDetails details,
+            @AuthenticationPrincipal UserDetails userDetails,
+            @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "from", required = false) String from,
             @RequestParam(value = "to", required = false) String to){
-        if(!security.isAuthorizedAsAdmin(details)){
+        if (!security.isAuthorizedAsAdmin(userDetails)){
             return "redirect:/?notAdmin=true";
         }
+        model.addAttribute("users", users.findAll());
         GenericDateRangeDTO dateRangeDTO = GenericDateRangeDTO.createDateRange(from, to);
-        if (dateRangeDTO.isValid()) {
-            model.addAttribute("entries", logs.getLogEntries(dateRangeDTO.getFromDate(), dateRangeDTO.getToDate()));
+        if (dateRangeDTO.isValid() && username != null){
+            model.addAttribute("entries", logs.getLogEntriesFor(username, dateRangeDTO.getFromDate(), dateRangeDTO.getToDate()));
         }
-        logger.log("visited the Logs View Page");
-        return "logs";
+        return "useractions";
     }
-
 }

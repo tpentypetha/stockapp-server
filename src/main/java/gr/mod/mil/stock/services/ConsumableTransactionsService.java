@@ -32,22 +32,26 @@ public class ConsumableTransactionsService {
     @Autowired
     QuantityRepository quantities;
 
-    public ConsumableTransaction record(Consumable consumable, TransactionIndicator indicator, int amount) {
+    public ConsumableTransaction record(Consumable consumable, TransactionIndicator indicator, int amount,String dept_desc) {
         ConsumableTransaction transaction = new ConsumableTransaction();
         transaction.setConsumable(consumable);
         if (indicator.equals(TransactionIndicator.DEPOSIT)){
             transaction.setDepositamount(amount);
             transaction.setWithdrawamount(0);
             transaction.setDelete_amount(0);
+            transaction.setDept_desc("ΤΜΗΜΑ ΠΛΗΡΟΦΟΡΙΚΗΣ - ΕΠΙΚΟΙΝΩΝΙΩΝ - ΝΕΩΝ ΤΕΧΝΟΛΟΓΙΩΝ");
+
         } else if(indicator.equals(TransactionIndicator.WITHDRAWAL)) {
             transaction.setWithdrawamount(amount);
             transaction.setDepositamount(0);
             transaction.setDelete_amount(0);
+            transaction.setDept_desc(dept_desc);
         }
         else{
             transaction.setDelete_amount(amount);
             transaction.setDepositamount(0);
             transaction.setWithdrawamount(0);
+            transaction.setDept_desc("ΤΜΗΜΑ ΠΛΗΡΟΦΟΡΙΚΗΣ - ΕΠΙΚΟΙΝΩΝΙΩΝ - ΝΕΩΝ ΤΕΧΝΟΛΟΓΙΩΝ");
 
         }
         transaction.setWhen(new Date());

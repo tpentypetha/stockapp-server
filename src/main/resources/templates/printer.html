@@ -3,6 +3,9 @@
       xmlns:th="http://www.thymeleaf.org">
 <body>
 <section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Printer";
+    </script>
     <div class="container">
         <div th:if="${error}" class="alert alert-warning">
             <strong>Προσοχή!</strong> Το αναλώσιμο που προσπαθείτε να προσθέσετε υπάρχει ήδη.

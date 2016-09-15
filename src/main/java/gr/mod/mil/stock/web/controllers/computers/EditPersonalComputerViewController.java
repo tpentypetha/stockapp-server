@@ -27,7 +27,7 @@ public class EditPersonalComputerViewController {
 
     @RequestMapping("/editpc")
     public String view(Model model, @RequestParam("id") String id) {
-        model.addAttribute("pc", repository.findByPublicid(id));
+        model.addAttribute("pc", repository.getByPublicid(id));
         logger.log("visited the edit Personal Computer page");
         return "editpc";
     }

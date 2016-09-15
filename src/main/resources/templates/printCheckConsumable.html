@@ -3,6 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
 <body>
 <section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Print Check Consumable";
+    </script>
     <!-- Alert if operation completed successfully or failed -->
     <script th:inline="javascript">
         /*<![CDATA[*/

@@ -27,7 +27,7 @@ public class DeletePersonalComputerViewController {
 
     @RequestMapping("/deletepc")
     public String getView(Model model, @RequestParam("id") String id){
-        PersonalComputer computer = repository.findByPublicid(id);
+        PersonalComputer computer = repository.getByPublicid(id);
         model.addAttribute("pc", computer);
         logger.log("visited the Delete Personal Computer Page for " + computer.getModelName());
         return "deletepc";

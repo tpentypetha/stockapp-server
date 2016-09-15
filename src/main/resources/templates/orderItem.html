@@ -3,6 +3,9 @@
         xmlns:th="http://www.thymeleaf.org">
 <body>
 <section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Order Item";
+    </script>
     <div class="container">
         <h3 th:text="${itemDetails.title}"></h3>
         <h4 th:text="${itemDetails.category}"></h4>

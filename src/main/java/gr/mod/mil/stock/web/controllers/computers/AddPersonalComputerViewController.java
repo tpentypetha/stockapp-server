@@ -17,16 +17,26 @@ public class AddPersonalComputerViewController {
     @Autowired
     LogService logger;
 
+
+    // import tin class PersonalComputerService
     @Autowired
     PersonalComputerService service;
 
+
+    // i methodos gia to anoigma tis html selidas addPC
     @RequestMapping("/addPc")
     public String view(){
         return "addPc";
     }
 
-    @RequestMapping(value = "/addPc", method = RequestMethod.POST)
-    public String addPc(@ModelAttribute("addPcDto")AddPcDTO data) {
+
+
+    //I methodos gia tin prosthiki pc.
+    // To Object data typou AddPcDTO epistrefetai apo tin html selida os model attribute
+
+    @RequestMapping(value = "/addPc", method = RequestMethod.POST) // to value '/addPc' einai to onoma tou action tis form stin html selida addPcs
+    public String addPc(@ModelAttribute("addPcDto")AddPcDTO data) { // Sto ModelAttribute("addPcDto") xrisimopoioume to name tis form pou vrisketai
+                                                                    // sto addPc.html (<form role="form" method="post" action="addPc" name="addPcDto"> )
         PersonalComputer created = service.create(new PersonalComputerBuilder()
                 .setModelName(data.getModelName().trim())
                 .setSerialNum(data.getSerialNum().trim())

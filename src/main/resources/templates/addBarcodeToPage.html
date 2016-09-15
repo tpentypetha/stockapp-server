@@ -4,6 +4,9 @@
 <body>
 <section layout:fragment="content">
     <div class="container">
+        <script type="text/javascript">
+            document.title = document.title + " - Add Barcode";
+        </script>
         <div>
             <h3 th:text="${printableText}"></h3>
             <img th:src="@{/barcode(text=${barcodeText})}"></img>

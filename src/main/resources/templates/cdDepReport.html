@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - CD Dep Report";
+    </script>
+    <div class="col-md-10">
+        <h3 >Αναλυτική αναφορά χρήσης αναλωσίμων</h3>
+        <h4 th:text="${data.from} + ' ΕΩΣ '+ ${data.to} "></h4>
+
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-10" th:each="rep,iterationStatus: ${report}">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Τμήμα:
+                            <strong>
+                                <span th:text="${rep.depname}"></span>
+                            </strong>
+
+                        </h3>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Κωδικός αναλωσίμου</th>
+                            <th>Ποσότητα</th>
+                            <th>Εκτιμώμενες εκτυπωμένες σελίδες</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item,iterationStatus: ${rep.list}">
+                            <td th:text="${item.consumable_name}"></td>
+                            <td th:text="${item.withdrawals}"></td>
+                            <td th:text="${item.sumpages}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - KVMs";
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <a href="/addKvm" class="btn btn-info" role="button">Προσθήκη</a>
+            </div>
+            <div class="col-md-6">
+                <div id="custom-search-input">
+                    <form role="form" action="kvms" method="get" name="searchKvmDto">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                        <div class="input-group col-md-12">
+                            <input type="text" name="query" class="form-control input-lg" placeholder="Εύρεση" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <table class="table">
+            <thead>
+            <tr>
+                <td><strong>Όνομα Μοντέλου</strong></td>
+                <td><strong>PUBLICID</strong></td>
+                <td><strong>Status</strong></td>
+                <td><strong>Number of devices</strong></td>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="kvm,iterationStatus: ${kvms}">
+                <td th:text="${kvm.model_name}"></td>
+                <td th:text="${kvm.PUBLICID}"></td>
+                <td th:text="${kvm.status}"></td>
+                <td th:text="${kvm.NUM_DEVICES_SUPPORTED}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:margin-left="http://www.w3.org/1999/xhtml"
+      xmlns:option="http://www.w3.org/1999/xhtml" xmlns:id="http://www.w3.org/1999/xhtml"
+
       layout:decorator="base"
       xmlns:th="http://www.thymeleaf.org">
 <body>
 <section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Cabinet";
+    </script>
     <!-- Alert if operation completed successfully or failed -->
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -24,9 +29,26 @@
                 alert(decodeURIComponent(queryVariables.message));
         };
 
+        function set_selected(){
+
+            document.getElementById("inputid").value=document.getElementById("deptselect").value;
+
+        };
+
+        function  setvariables(id,amount){
+
+            document.getElementById("quantityid").value=id;
+            document.getElementById("amount").value=amount;
+
+
+
+        };
+
+
         $(document).ready(function() {
             afterLoad();
         });
+
 
         /*]]>*/
     </script>
@@ -81,16 +103,57 @@
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button>
                         </form>
-                        <form role="form" action="editQuantity" name="editQuantityDto" method="post">
-                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
-                            <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>
-                            <input type="hidden" name="quantityid" th:value="${quantity.publicid}"></input>
-                            <input type="hidden" name="amount" th:value="${quantity.amount - 1}"></input>
-                            <button type="submit" class="btn btn-danger pull-left" style="margin-left: 3px">
 
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                        </form>
+                        <button th:onclick="'setvariables(\'' + ${quantity.publicid} + '\',\'' + ${quantity.amount - 1} + '\')'" type="submit" class="btn btn-danger pull-left"  data-toggle="modal" data-target="#selectdepartment">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                        </button>
+                        <div class="modal fade" id="selectdepartment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div  class="modal-dialog modal-sm" role="document">
+                                <div  class="modal-content">
+                                    <form role="form" action="editQuantity" name="editQuantityDto" method="post">
+                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                                        <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>
+                                        <input type="hidden" id="quantityid" name="quantityid" value=""></input>
+                                        <input type="hidden" id="inputid" name="dept_desc" value=""></input>
+                                        <input type="hidden" id="amount" name="amount" value=""></input>
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h3 class="modal-title" id="myModalLabel">Επέλεξε το τμήμα</h3>
+                                    </div>
+                                    <div class="modal-body text-center">
+
+                                        <select onchange="set_selected()" id="deptselect" name="deptselect"  class="selectpicker" data-size="10" data-live-search="true" tabindex="1">
+                                            <option th:each="dept : ${depts}"
+                                                    th:value="${dept.description}"
+                                                    th:utext="${dept.description}"></option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="modal-footer">
+
+
+
+
+                                            <button  onclick="set_selected()" type="submit" class="btn btn-danger pull-right" tabindex="2">
+                                                αφαίρεση
+                                            </button>
+
+                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">άκυρο</button>
+
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
                         <form role="form" action="tranferQuantity" name="editQuantityDto" method="get">
 
                             <input type="hidden" name="cabinetid" th:value="${cabinet.publicid}"></input>

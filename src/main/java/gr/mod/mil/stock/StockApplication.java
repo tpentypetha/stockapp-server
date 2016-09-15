@@ -15,6 +15,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.stereotype.Component;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 @ComponentScan
 @SpringBootApplication
@@ -22,7 +25,7 @@ import org.springframework.stereotype.Component;
 @EnableAutoConfiguration
 @EntityScan(basePackages = "gr.mod.mil.stock.dal.model")
 public class StockApplication {
-
+    private static final String ENCODING = "UTF-8";
     private final static Logger log = LoggerFactory.getLogger(StockApplication.class);
 
     public static void main(String[] args) {
@@ -40,5 +43,6 @@ public class StockApplication {
             container.addErrorPages(error401Page, error404Page, error500Page);
         });
     }
+
 
 }

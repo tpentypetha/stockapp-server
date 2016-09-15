@@ -1,4 +1,4 @@
-package gr.mod.mil.stock.web.controllers;
+package gr.mod.mil.stock.web.controllers.other;
 
 
 import gr.mod.mil.stock.dal.model.stock.Contacts;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -102,4 +103,49 @@ public class Ticketing {
     }
 
 
+    @RequestMapping("/editticket/{id}/{notes}")
+    public   String edit_ticket(@PathVariable String id,@PathVariable String notes) {
+
+
+        //service.Submit(data);
+
+        service.saveEdit(id,notes);
+
+
+        return null;
+    }
+
+
+    @RequestMapping("/get10solved")
+    public @ResponseBody List<TicketFormat> get_ticketSolved(
+            ) {
+
+
+       String s="";
+        List<TicketFormat> tickets =new ArrayList<TicketFormat>();
+        List<Tickets> oldtickets= repo.getlast10Solved();
+
+        for(int i=0;i<oldtickets.size();i++){
+
+            TicketFormat as=new TicketFormat();
+            as.setId(oldtickets.get(i).getId());
+            as.setPhone(oldtickets.get(i).getPhone());
+            as.setStatus(oldtickets.get(i).getStatus());
+            as.setName(oldtickets.get(i).getName());
+            as.setNotes(oldtickets.get(i).getNotes());
+            as.setOffice(oldtickets.get(i).getOffice());
+            as.setProblem(oldtickets.get(i).getProblem());
+            String d= DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(oldtickets.get(i).getDatein());
+            as.setDatein(d);
+            tickets.add(as);
+        }
+        return tickets;
+    }
+
+    @RequestMapping(value="/10solvedtickets",  method = RequestMethod.POST)
+    public String getView2(
+            Model model) {
+
+        return "10solvedtickets";
+    }
 }

@@ -1,4 +1,4 @@
-package gr.mod.mil.stock.web.controllers;
+package gr.mod.mil.stock.web.controllers.other;
 
 import gr.mod.mil.stock.services.LogService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,6 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
 <body>
 <section layout:fragment="content">
+	<script type="text/javascript">
+		document.title = document.title + " - Barcode Generator";
+	</script>
     <div class="container">
 		<div th:if="${pageFull}" class="alert alert-warning">
 			<strong>Προσοχή!</strong>

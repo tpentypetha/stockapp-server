@@ -26,6 +26,16 @@ public class PrinterDevice extends Device implements BarcodePrintable {
     public PrinterTechnology getTechnology() { return technology; }
     public void setTechnology(PrinterTechnology technology) { this.technology = technology; }
 
+    private long belongs_to;
+
+    public long getBelongs_to() {
+        return belongs_to;
+    }
+
+    public void setBelongs_to(long belongs_to) {
+        this.belongs_to = belongs_to;
+    }
+
     public PrinterDevice(DeviceStatus status, String position, String modelName, String serialNum, String partNum, String publicid, boolean colorPrinter, boolean networkPrinter, boolean multiPurposeMachine, PrinterTechnology technology) {
         super(status, position, modelName, serialNum, partNum, publicid);
         this.colorPrinter = colorPrinter;

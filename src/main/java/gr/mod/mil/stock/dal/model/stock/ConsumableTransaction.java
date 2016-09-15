@@ -30,6 +30,17 @@ public class ConsumableTransaction {
     public int getDelete_amount(){ return delete_amount;}
     public void setDelete_amount(int delete_amount){this.delete_amount=delete_amount;}
 
+
+    String dept_desc;
+
+    public String getDept_desc() {
+        return dept_desc;
+    }
+
+    public void setDept_desc(String dept_desc) {
+        this.dept_desc = dept_desc;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date when;
     public Date getWhen() { return when; }

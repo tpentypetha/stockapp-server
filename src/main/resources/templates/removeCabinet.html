@@ -3,6 +3,9 @@
       xmlns:th="http://www.thymeleaf.org">
 <body>
 <section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Remove Cabinet";
+    </script>
     <div class="container">
         <h3 th:text="${cabinet.name}"></h3>
         <p>Είστε σίγουρος(η) ότι θέλετε να σβήσετε το ράφι;</p>

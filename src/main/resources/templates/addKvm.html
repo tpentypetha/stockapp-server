@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="base">
+<body>
+<section layout:fragment="content">
+    <script type="text/javascript">
+        document.title = document.title + " - Add KVM";
+    </script>
+    <div class="container">
+        <h3>Προσθήκη νέου KVM</h3>
+        <hr/>
+        <p><strong>Στοιχεία συσκευής</strong></p>
+        <div class="col-md-4">
+            <form role="form" method="post" action="addKvmDevice" name="KvmDeviceDto">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"></input>
+                <div class="form-group">
+                    <label for="modelName">Όνομα Μοντέλου:</label>
+                    <input type="text" class="form-control" id="modelName" name="modelName"
+                           required="true" pattern=".{5,}" title="Τουλάχιστον 5 χαρακτήρες"></input>
+                </div>
+
+
+                <label>Κατάσταση:</label>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="STOCKED" required="required"></input>STOCKED</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="DEPLOYED"></input>DEPLOYED</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="REPAIR"></input>REPAIR</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="status" value="OBSOLETE"></input>OBSOLETE</label>
+                </div>
+                <hr/>
+
+                <label>Αριθμός θέσεων:</label>
+                <div class="radio">
+                    <label><input type="radio" name="numofdevices" value="2" required="required"></input>2</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="numofdevices" value="4"></input>4</label>
+                </div>
+
+                <button type="submit" class="btn btn-success">Προσθήκη</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

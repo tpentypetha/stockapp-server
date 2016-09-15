@@ -22,4 +22,9 @@ public interface PrinterDeviceRepository extends CrudRepository<PrinterDevice, L
             "AND P.status = :status")
     List<PrinterDevice> getPrinterByTechnologyAndStatus(@Param("technology") PrinterTechnology technology, @Param("status") DeviceStatus status);
 
+    @Query( "SELECT P " +
+            "FROM PrinterDevice P " +
+            "WHERE P.belongs_to = :belongs_to ")
+    List<PrinterDevice> getPrinter_thatBelongsTo(@Param("belongs_to") long id);
+
 }
